@@ -13,7 +13,6 @@ editorconfig.editorconfig
 formulahendry.auto-complete-tag
 formulahendry.auto-rename-tag
 github.vscode-pull-request-github
-gitlab.gitlab-workflow
 gleam.gleam
 gruntfuggly.todo-tree
 lokalise.i18n-ally
@@ -27,7 +26,6 @@ ms-vscode-remote.remote-ssh
 ms-vscode-remote.remote-ssh-edit
 ms-vscode-remote.vscode-remote-extensionpack
 ms-vscode.live-server
-ms-vscode.remote-explorer
 nuxt.mdc
 nuxtr.nuxtr-vscode
 pkief.material-icon-theme
@@ -39,5 +37,4 @@ usernamehw.errorlens
 vitest.explorer
 vscodevim.vim
 vue.volar
-vue.vscode-typescript-vue-plugin
 yzhang.markdown-all-in-one
