@@ -2,6 +2,7 @@
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
   },
+  "html.autoClosingTags": true,
   "html.format.wrapLineLength": 0,
   "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
@@ -100,8 +101,6 @@
   "redhat.telemetry.enabled": false,
   "terminal.integrated.fontFamily": "DaddyTimeMono Nerd Font",
   "terminal.integrated.fontSize": 14,
-  "terminal.integrated.scrollback": 5000,
-  "terminal.integrated.stickyScroll.enabled": true,
   "terminal.integrated.defaultProfile.osx": "tmux-shell",
   "terminal.integrated.profiles.osx": {
     "tmux-shell": {
@@ -133,6 +132,7 @@
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
+  "vim.leader": "<space>",
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": [
@@ -152,7 +152,7 @@
       "silent": true
     }
   ],
-  "vim.leader": "<space>",
+  "vim.visualModeKeyBindingsNonRecursive": [],
   "vim.normalModeKeyBindings": [
     {
       "before": [
