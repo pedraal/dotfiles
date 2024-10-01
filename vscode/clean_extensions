@@ -1,0 +1,72 @@
+#!/bin/bash
+
+# Script: uninstall_extra_extensions
+# Usage: ./uninstall_extra_extensions
+
+# Path to the extensions file
+config_dir="$HOME/.config/vscode"
+extensions_file="$config_dir/extensions.txt"
+
+# Check if the extensions file exists
+if [ ! -f "$extensions_file" ]; then
+    echo "Extensions file not found at $extensions_file"
+    exit 1
+fi
+
+# Read the desired extensions into an array
+desired_extensions=()
+while IFS= read -r line || [[ -n "$line" ]]; do
+    # Skip empty lines
+    if [ -n "$line" ]; then
+        desired_extensions+=("$line")
+    fi
+done < "$extensions_file"
+
+# Check if desired_extensions array is empty
+if [ ${#desired_extensions[@]} -eq 0 ]; then
+    echo "Desired extensions list is empty. Exiting to avoid uninstalling all extensions."
+    exit 1
+fi
+
+# Applications to process
+applications=("code" "cursor")
+
+for cli_command in "${applications[@]}"; do
+    # Check if the CLI command exists
+    if ! command -v "$cli_command" &> /dev/null; then
+        echo "Warning: $cli_command command not found. Skipping."
+        continue
+    fi
+
+    echo "Processing extensions for $cli_command..."
+
+    # Get the list of currently installed extensions
+    IFS=$'\n' read -d '' -r -a installed_extensions < <("$cli_command" --list-extensions && printf '\0')
+
+    # Loop over installed extensions
+    for extension in "${installed_extensions[@]}"; do
+        # Assume extension is not desired
+        is_desired=false
+
+        # Check if the extension is in the desired extensions list
+        for desired_extension in "${desired_extensions[@]}"; do
+            if [ "$extension" == "$desired_extension" ]; then
+                is_desired=true
+                break
+            fi
+        done
+
+        if [ "$is_desired" = false ]; then
+            echo "Uninstalling $extension from $cli_command..."
+            "$cli_command" --uninstall-extension "$extension" --force
+            if [ $? -ne 0 ]; then
+                echo "Failed to uninstall $extension for $cli_command"
+            fi
+        fi
+    done
+
+    echo "Completed processing extensions for $cli_command"
+    echo "---------------------------------------"
+done
+
+echo "Script execution completed."
