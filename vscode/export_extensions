@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Script: export_extensions
+# Usage: ./export_extensions [code|cursor]
+
+# Check if an argument is provided
+if [ -z "$1" ]; then
+    echo "Usage: $0 [code|cursor]"
+    exit 1
+fi
+
+# Set variables based on the argument
+if [ "$1" == "code" ]; then
+    app_name="Code"
+    cli_command="code"
+elif [ "$1" == "cursor" ]; then
+    app_name="Cursor"
+    cli_command="cursor"
+else
+    echo "Invalid argument: $1"
+    echo "Usage: $0 [code|cursor]"
+    exit 1
+fi
+
+# Path to store the extensions list
+config_dir="$HOME/.config/vscode"
+extensions_file="$config_dir/extensions.txt"
+
+# Ensure the config directory exists
+if [ ! -d "$config_dir" ]; then
+    mkdir -p "$config_dir"
+fi
+
+# Check if the CLI command exists
+if ! command -v "$cli_command" &> /dev/null; then
+    echo "Error: $cli_command command not found."
+    echo "Please ensure $app_name is installed and its command-line tools are available."
+    exit 1
+fi
+
+# Export the list of extensions
+echo "Exporting extensions for $app_name..."
+
+"$cli_command" --list-extensions > "$extensions_file"
+
+if [ $? -eq 0 ]; then
+    echo "Extensions have been exported to $extensions_file"
+else
+    echo "Failed to export extensions."
+    exit 1
+fi

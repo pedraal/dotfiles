@@ -1,0 +1,78 @@
+#!/bin/bash
+
+# Array of application names to process
+applications=("Cursor" "Code")
+
+# Path to your central configuration files
+config_dir="$HOME/.config/vscode"
+
+# Configuration files to process
+config_files=("settings.json" "keybindings.json")
+
+# Iterate over each application
+for app in "${applications[@]}"; do
+    app_support_dir="$HOME/Library/Application Support/$app"
+    user_dir="$app_support_dir/User"
+
+    # Check if the application support directory exists
+    if [ -d "$app_support_dir" ]; then
+        echo "Processing $app..."
+
+        # Ensure the User directory exists
+        if [ ! -d "$user_dir" ]; then
+            echo "Creating User directory at $user_dir"
+            mkdir -p "$user_dir"
+        fi
+
+        # Iterate over each configuration file
+        for config_file in "${config_files[@]}"; do
+            source_file="$config_dir/$config_file"
+            target_file="$user_dir/$config_file"
+
+            # Check if the source configuration file exists
+            if [ -e "$source_file" ]; then
+
+                # If target file exists
+                if [ -e "$target_file" ]; then
+
+                    # Check if it's a symlink
+                    if [ -L "$target_file" ]; then
+                        # Get the symlink target
+                        symlink_target=$(readlink "$target_file")
+                        # Resolve symlink to an absolute path
+                        symlink_target_abs=$(cd "$(dirname "$target_file")" && cd "$(dirname "$symlink_target")" && pwd)/$(basename "$symlink_target")
+                        # Resolve source file to an absolute path
+                        source_file_abs=$(cd "$(dirname "$source_file")" && pwd)/$(basename "$source_file")
+
+                        # Compare the symlink target with the source file
+                        if [ "$symlink_target_abs" == "$source_file_abs" ]; then
+                            echo "$config_file is already correctly linked. Skipping."
+                            continue
+                        else
+                            echo "$config_file symlink exists but points to $symlink_target_abs instead of $source_file_abs. Replacing symlink."
+                            rm "$target_file"
+                        fi
+                    else
+                        echo "Existing $config_file is not a symlink. Replacing with symlink to $source_file."
+                        rm "$target_file"
+                    fi
+                fi
+
+                # Create the symbolic link if it doesn't exist
+                if [ ! -e "$target_file" ]; then
+                    echo "Creating symlink from $source_file to $target_file"
+                    ln -s "$source_file" "$target_file"
+                fi
+            else
+                echo "Source file $source_file does not exist. Skipping symlink for $config_file."
+            fi
+        done
+
+        echo "---------------------------------------"
+    else
+        echo "Directory $app_support_dir does not exist. Skipping $app."
+        echo "---------------------------------------"
+    fi
+done
+
+echo "Script execution completed."

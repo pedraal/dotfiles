@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Script: install_extensions
+# Usage: ./install_extensions
+
+# Path to the extensions file
+config_dir="$HOME/.config/vscode"
+extensions_file="$config_dir/extensions.txt"
+
+# Check if the extensions file exists
+if [ ! -f "$extensions_file" ]; then
+    echo "Extensions file not found at $extensions_file"
+    exit 1
+fi
+
+# Applications to install extensions to
+applications=("code" "cursor")
+
+# Iterate over applications
+for cli_command in "${applications[@]}"; do
+    # Check if the CLI command exists
+    if ! command -v "$cli_command" &> /dev/null; then
+        echo "Warning: $cli_command command not found. Skipping."
+        continue
+    fi
+
+    echo "Installing extensions for $cli_command..."
+
+    # Read extensions and install them
+    while IFS= read -r extension || [ -n "$extension" ]; do
+        if [ -n "$extension" ]; then
+            echo "Installing $extension..."
+            "$cli_command" --install-extension "$extension"
+            if [ $? -ne 0 ]; then
+                echo "Failed to install $extension for $cli_command"
+            fi
+        fi
+    done < "$extensions_file"
+
+    echo "Completed installing extensions for $cli_command"
+    echo "---------------------------------------"
+done
+
+echo "Script execution completed."
