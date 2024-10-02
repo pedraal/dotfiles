@@ -1,31 +1,4 @@
 {
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
-  "html.autoClosingTags": true,
-  "html.format.wrapLineLength": 0,
-  "[javascript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[vue]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "nuxtr.defaultPackageManager": "pnpm",
-  "nuxtr.openItemsAfterCreation": true,
-  "nuxtr.vueFiles.firstTag": "script",
-  "nuxtr.vueFiles.style.addStyleTag": false,
-  "eslint.codeActionsOnSave.mode": "all",
-  "eslint.format.enable": true,
-  "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "[markdown]": {
-    "diffEditor.ignoreTrimWhitespace": false
-  },
-  "css.validate": false,
   "editor.accessibilitySupport": "off",
   "editor.autoClosingBrackets": "always",
   "editor.autoClosingQuotes": "always",
@@ -39,7 +12,7 @@
   "editor.fontSize": 14,
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "editor.formatOnType": true,
+  // "editor.formatOnType": true,
   "editor.inlineSuggest.enabled": true,
   "editor.linkedEditing": true,
   "editor.maxTokenizationLineLength": 1e+23,
@@ -56,15 +29,9 @@
   "editor.rulers": [
     80
   ],
-  "emmet.showAbbreviationSuggestions": true,
-  "emmet.showSuggestionsAsSnippets": true,
   "files.exclude": {
     "**/.DS_Store": true,
     "**/.git": true,
-    "**/.hg": true,
-    "**/.svn": true,
-    "**/bower_components": true,
-    "**/jspm_packages": true
   },
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
@@ -125,6 +92,36 @@
   "workbench.activityBar.location": "hidden",
   "window.confirmSaveUntitledWorkspace": false,
   "workbench.settings.enableNaturalLanguageSearch": false,
+  // LANGUAGES SPECIFIC SETTINGS
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "html.autoClosingTags": true,
+  "html.format.wrapLineLength": 0,
+  "emmet.showAbbreviationSuggestions": true,
+  "emmet.showSuggestionsAsSnippets": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "nuxtr.defaultPackageManager": "pnpm",
+  "nuxtr.openItemsAfterCreation": true,
+  "nuxtr.vueFiles.firstTag": "script",
+  "nuxtr.vueFiles.style.addStyleTag": false,
+  "eslint.codeActionsOnSave.mode": "all",
+  "eslint.format.enable": true,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[markdown]": {
+    "diffEditor.ignoreTrimWhitespace": false
+  },
+  "css.validate": false,
   // VIM SETTINGS
   "vim.surround": true,
   "vim.easymotion": true,
@@ -133,6 +130,7 @@
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
   "vim.leader": "<space>",
+  "vim.highlightedyank.enable": true,
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": [
@@ -152,7 +150,6 @@
       "silent": true
     }
   ],
-  "vim.visualModeKeyBindingsNonRecursive": [],
   "vim.normalModeKeyBindings": [
     {
       "before": [
@@ -181,6 +178,7 @@
       ]
     }
   ],
+  "vim.visualModeKeyBindingsNonRecursive": [],
   // To improve performance,
   "extensions.experimental.affinity": {
     "vscodevim.vim": 1

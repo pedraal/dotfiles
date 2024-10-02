@@ -102,5 +102,15 @@
     "key": "o",
     "command": "explorer.openFile",
     "when": "explorerViewletFocus && !inputFocus"
+  },
+  {
+    "key": "space b",
+    "command": "workbench.files.action.focusFilesExplorer",
+    "when": "editorTextFocus && vim.mode == 'Normal'"
+  },
+  {
+    "key": "space b",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "explorerViewletFocus"
   }
 ]
