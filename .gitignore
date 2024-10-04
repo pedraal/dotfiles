@@ -1,7 +1,8 @@
 zed
 simple-update-notifier
 raycast
-karabiner
+karabiner/*
+!karabiner/karabiner.json
 iterm2
 fish
 exercism
