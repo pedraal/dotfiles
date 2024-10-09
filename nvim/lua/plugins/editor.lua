@@ -10,11 +10,11 @@ return {
 	-- Detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
 	-- Automatically add closing tags for HTML and JSX
-	{
-		"windwp/nvim-ts-autotag",
-		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-		opts = {},
-	},
+	-- {
+	-- 	"windwp/nvim-ts-autotag",
+	-- 	event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+	-- 	opts = {},
+	-- },
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
