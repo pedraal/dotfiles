@@ -48,12 +48,6 @@
     "when": "vim.mode == 'Normal'"
   },
   {
-    "key": "shift+l",
-    "command": "workbench.action.moveEditorRightInGroup",
-    "when": "vim.mode == 'Normal'"
-  },
-  // NEOTREE LIKE BINDINGS
-  {
     "key": "enter",
     "command": "list.select",
     "when": "explorerViewletFocus"
@@ -87,6 +81,16 @@
     "key": "p",
     "command": "filesExplorer.paste",
     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "ctrl-h",
+    "command": "workbench.action.previousEditor",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl-l",
+    "command": "workbench.action.nextEditor",
+    "when": "!terminalFocus"
   },
   // DEBINDS
   {
@@ -136,5 +140,9 @@
   {
     "key": "cmd+n",
     "command": "-workbench.action.files.newUntitledFile",
+  },
+  {
+    "key": "cmd+s",
+    "command": "-workbench.action.files.save"
   },
 ]

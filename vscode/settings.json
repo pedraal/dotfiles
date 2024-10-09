@@ -28,6 +28,8 @@
   "editor.rulers": [
     80
   ],
+  "explorer.compactFolders": false,
+  "scm.compactFolders": false,
   "files.exclude": {
     "**/.DS_Store": true,
     "**/.git": true,
@@ -114,6 +116,10 @@
   "nuxtr.vueFiles.style.addStyleTag": false,
   "eslint.codeActionsOnSave.mode": "all",
   "eslint.format.enable": true,
+  "typescript.updateImportsOnFileMove.enabled": "never",
+  "javascript.updateImportsOnFileMove.enabled": "never",
+  "totalTypeScript.hideAllTips": false,
+  "totalTypeScript.hideBasicTips": true,
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
@@ -151,49 +157,6 @@
     }
   ],
   "vim.normalModeKeyBindings": [
-    {
-      "before": [
-        "<leader>",
-        "f"
-      ],
-      "commands": [
-        "workbench.action.findInFiles"
-      ]
-    },
-    {
-      "before": [
-        "<C-h>"
-      ],
-      "commands": [
-        "workbench.action.previousEditor"
-      ]
-    },
-    {
-      "before": [
-        "<C-l>"
-      ],
-      "commands": [
-        "workbench.action.nextEditor"
-      ]
-    },
-    {
-      "before": [
-        "<C-q>"
-      ],
-      "after": [
-        "<C-w>",
-        "q"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "b"
-      ],
-      "commands": [
-        "workbench.view.explorer"
-      ]
-    },
     {
       "before": [
         "g",
@@ -300,5 +263,5 @@
   // To improve performance,
   "extensions.experimental.affinity": {
     "vscodevim.vim": 1
-  }
+  },
 }

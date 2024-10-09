@@ -15,7 +15,7 @@ formulahendry.auto-rename-tag
 github.vscode-pull-request-github
 gleam.gleam
 gruntfuggly.todo-tree
-lokalise.i18n-ally
+mattpocock.ts-error-translator
 michelemelluso.gitignore
 mongodb.mongodb-vscode
 mrmlnc.vscode-puglint
@@ -32,6 +32,7 @@ pkief.material-icon-theme
 redhat.vscode-yaml
 sleistner.vscode-fileutils
 stylelint.vscode-stylelint
+tamasfe.even-better-toml
 tobias-z.vscode-harpoon
 usernamehw.errorlens
 vitest.explorer
