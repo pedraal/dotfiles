@@ -3,6 +3,7 @@ simple-update-notifier
 raycast
 karabiner/*
 !karabiner/karabiner.json
+tmux/plugins
 iterm2
 fish
 exercism
