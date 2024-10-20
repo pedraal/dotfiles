@@ -35,10 +35,21 @@ return {
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { "eslint_d", "biome" },
-				typescript = { "eslint_d", "biome" },
-				vue = { "eslint_d", "biome" },
+				-- javascript = { "eslint_d", "biome" },
+				-- typescript = { "denols" },
+				-- vue = { "eslint_d", "biome" },
 			},
+		},
+		{
+			"mfussenegger/nvim-lint",
+			config = function()
+				require("lint").linters_by_ft = {}
+				vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "TextChanged" }, {
+					callback = function()
+						require("lint").try_lint()
+					end,
+				})
+			end,
 		},
 	},
 }

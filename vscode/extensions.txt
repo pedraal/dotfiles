@@ -1,5 +1,6 @@
 antfu.goto-alias
 antfu.iconify
+asvetliakov.vscode-neovim
 biomejs.biome
 bradlc.vscode-tailwindcss
 catppuccin.catppuccin-vsc
@@ -36,6 +37,5 @@ tamasfe.even-better-toml
 tobias-z.vscode-harpoon
 usernamehw.errorlens
 vitest.explorer
-vscodevim.vim
 vue.volar
 yzhang.markdown-all-in-one

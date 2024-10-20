@@ -1,4 +1,7 @@
 {
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
   "editor.accessibilitySupport": "off",
   "editor.autoClosingBrackets": "always",
   "editor.autoClosingQuotes": "always",
@@ -28,6 +31,7 @@
   "editor.rulers": [
     80
   ],
+  "editor.lineNumbers": "relative",
   "explorer.compactFolders": false,
   "scm.compactFolders": false,
   "files.exclude": {
@@ -120,6 +124,9 @@
   "javascript.updateImportsOnFileMove.enabled": "never",
   "totalTypeScript.hideAllTips": false,
   "totalTypeScript.hideBasicTips": true,
+  "totalTypeScript.hiddenTips": [
+    "passing-generics-to-types"
+  ],
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
   },
@@ -127,141 +134,4 @@
     "diffEditor.ignoreTrimWhitespace": false
   },
   "css.validate": false,
-  // VIM SETTINGS
-  "editor.lineNumbers": "relative",
-  "vim.surround": true,
-  "vim.easymotion": true,
-  "vim.incsearch": true,
-  "vim.useSystemClipboard": true,
-  "vim.useCtrlKeys": true,
-  "vim.hlsearch": true,
-  "vim.leader": "<space>",
-  "vim.highlightedyank.enable": true,
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": [
-        "<C-n>"
-      ],
-      "commands": [
-        ":nohl"
-      ]
-    },
-    {
-      "before": [
-        "K"
-      ],
-      "commands": [
-        "lineBreakInsert"
-      ],
-      "silent": true
-    }
-  ],
-  "vim.normalModeKeyBindings": [
-    {
-      "before": [
-        "g",
-        "p",
-        "d"
-      ],
-      "commands": [
-        "editor.action.peekDefinition"
-      ]
-    },
-    {
-      "before": [
-        "g",
-        "h"
-      ],
-      "commands": [
-        "editor.action.showDefinitionPreviewHover"
-      ]
-    },
-    {
-      "before": [
-        "g",
-        "i"
-      ],
-      "commands": [
-        "editor.action.goToImplementation"
-      ]
-    },
-    {
-      "before": [
-        "g",
-        "p",
-        "i"
-      ],
-      "commands": [
-        "editor.action.peekImplementation"
-      ]
-    },
-    {
-      "before": [
-        "g",
-        "q"
-      ],
-      "commands": [
-        "editor.action.quickFix"
-      ]
-    },
-    {
-      "before": [
-        "g",
-        "r"
-      ],
-      "commands": [
-        "editor.action.referenceSearch.trigger"
-      ]
-    },
-    {
-      "before": [
-        "g",
-        "t"
-      ],
-      "commands": [
-        "editor.action.goToTypeDefinition"
-      ]
-    },
-    {
-      "before": [
-        "g",
-        "p",
-        "t"
-      ],
-      "commands": [
-        "editor.action.peekTypeDefinition"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "a"
-      ],
-      "commands": [
-        "vscode-harpoon.addEditor"
-      ]
-    },
-    {
-      "before": [
-        "<C-e>"
-      ],
-      "commands": [
-        "vscode-harpoon.editEditors"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "e"
-      ],
-      "commands": [
-        "vscode-harpoon.editorQuickPick"
-      ]
-    }
-  ],
-  "vim.visualModeKeyBindingsNonRecursive": [],
-  // To improve performance,
-  "extensions.experimental.affinity": {
-    "vscodevim.vim": 1
-  },
 }
