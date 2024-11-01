@@ -7,7 +7,7 @@ normal.family = "DaddyTimeMono Nerd Font"
 bold.family = "DaddyTimeMono Nerd Font"
 italic.family = "DaddyTimeMono Nerd Font"
 bold_italic.family = "DaddyTimeMono Nerd Font"
-size = 15.0
+size = 14.0
 
 [env]
 TERM = "xterm-256color"
