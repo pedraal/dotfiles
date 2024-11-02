@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Script: export_extensions
-# Usage: ./export_extensions [code|cursor]
-
 # Check if an argument is provided
 if [ -z "$1" ]; then
     echo "Usage: $0 [code|cursor]"

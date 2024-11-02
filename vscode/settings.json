@@ -134,4 +134,5 @@
     "diffEditor.ignoreTrimWhitespace": false
   },
   "css.validate": false,
+  "editor.gotoLocation.multipleDefinitions": "goto",
 }

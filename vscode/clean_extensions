@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Script: uninstall_extra_extensions
-# Usage: ./uninstall_extra_extensions
-
 # Path to the extensions file
 config_dir="$HOME/.config/vscode"
 extensions_file="$config_dir/extensions.txt"

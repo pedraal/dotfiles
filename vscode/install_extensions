@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Script: install_extensions
-# Usage: ./install_extensions
-
 # Path to the extensions file
 config_dir="$HOME/.config/vscode"
 extensions_file="$config_dir/extensions.txt"
