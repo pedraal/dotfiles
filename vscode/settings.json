@@ -81,7 +81,7 @@
         "new-session",
         "-A",
         "-s",
-        "vscode:${workspaceFolderBasename}"
+        "${workspaceFolderBasename}_workspace"
       ]
     }
   },
@@ -135,4 +135,5 @@
   },
   "css.validate": false,
   "editor.gotoLocation.multipleDefinitions": "goto",
+  "diffEditor.ignoreTrimWhitespace": true,
 }
