@@ -1,0 +1,8 @@
+theme = "catppuccin-mocha"
+font-family = "DaddyTimeMono Nerd Font"
+font-family-bold = "DaddyTimeMono Nerd Font"
+font-family-italic = "DaddyTimeMono Nerd Font"
+font-family-bold-italic = "DaddyTimeMono Nerd Font"
+window-padding-balance = true
+macos-titlebar-style = hidden
+copy-on-select = true
