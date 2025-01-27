@@ -34,6 +34,9 @@ return {
 			local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path()
 
 			local lspconfig = require("lspconfig")
+			lspconfig.gopls.setup({
+				capabilities = capabilities,
+			})
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			})
@@ -102,4 +105,27 @@ return {
 			})
 		end,
 	},
+	{
+		"ray-x/go.nvim",
+		dependencies = {
+			"ray-x/guihua.lua",
+			"neovim/nvim-lspconfig",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("go").setup()
+
+
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				pattern = "*.go",
+				callback = function()
+					require('go.format').goimports()
+				end,
+				group = format_sync_grp,
+			})
+		end,
+		event = { "CmdlineEnter" },
+		ft = { "go", 'gomod' },
+		build = ':lua require("go.install").update_all_sync()'
+	}
 }

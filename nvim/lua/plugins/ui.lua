@@ -33,6 +33,11 @@ return {
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader> ", builtin.find_files, {})
 			vim.keymap.set("n", "<leader>f", builtin.live_grep, {})
+			vim.keymap.set("v", "<leader>f", builtin.grep_string, {})
+			vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
+			vim.keymap.set("n", "<leader>t", builtin.treesitter, {})
+			vim.keymap.set("n", "<leader>B", builtin.builtin, {})
+			require("telescope").load_extension("media_files")
 		end,
 	},
 	{
@@ -78,10 +83,10 @@ return {
 			-- end)
 
 			-- Toggle previous & next buffers stored within Harpoon list
-			vim.keymap.set("n", "<C-S-P>", function()
+			vim.keymap.set("n", "<C-P>", function()
 				harpoon:list():prev()
 			end)
-			vim.keymap.set("n", "<C-S-N>", function()
+			vim.keymap.set("n", "<C-N>", function()
 				harpoon:list():next()
 			end)
 
