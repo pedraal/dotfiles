@@ -73,6 +73,9 @@ return {
 			lspconfig.html.setup({
 				capabilities = capabilities,
 			})
+			lspconfig.stylelint_lsp.setup({
+				capabilities = capabilities,
+			})
 			lspconfig.eslint.setup({
 				capabilities = capabilities,
 				root_dir = lspconfig.util.root_pattern("eslint.config.js", "eslint.config.mjs", ".eslintrc.cjs"),
