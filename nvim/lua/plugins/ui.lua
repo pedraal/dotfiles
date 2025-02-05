@@ -28,7 +28,11 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = {
+			"nvim-lua/popup.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope-media-files.nvim"
+		},
 		config = function()
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader> ", builtin.find_files, {})
@@ -38,6 +42,7 @@ return {
 			vim.keymap.set("n", "<leader>t", builtin.treesitter, {})
 			vim.keymap.set("n", "<leader>B", builtin.builtin, {})
 			require("telescope").load_extension("media_files")
+			vim.keymap.set("n", "<leader>M", require('telescope').extensions.media_files.media_files, {})
 		end,
 	},
 	{
