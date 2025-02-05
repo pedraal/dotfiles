@@ -20,4 +20,15 @@ return {
 		event = "InsertEnter",
 		opts = {}, -- this is equalent to setup({}) function
 	},
+	{
+		'echasnovski/mini.nvim',
+		version = '*',
+	},
+	{
+		'echasnovski/mini.trailspace',
+		version = '*',
+		config = function()
+			require("mini.trailspace").setup({})
+		end,
+	},
 }
