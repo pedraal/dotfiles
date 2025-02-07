@@ -7,14 +7,10 @@ return {
 			require("nvim-surround").setup({})
 		end,
 	},
-	-- Detect tabstop and shiftwidth automatically
-	"tpope/vim-sleuth",
-	-- Automatically add closing tags for HTML and JSX
-	-- {
-	-- 	"windwp/nvim-ts-autotag",
-	-- 	event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-	-- 	opts = {},
-	-- },
+	{
+		"tpope/vim-sleuth",
+		version = '*',
+	},
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -38,5 +34,15 @@ return {
 		opts = {
 			processor = "magick_cli"
 		}
+	},
+	{
+		"nvim-pack/nvim-spectre",
+		version = '*',
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		config = function()
+			vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {})
+		end,
 	}
 }
