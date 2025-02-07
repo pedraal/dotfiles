@@ -27,3 +27,8 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = "*.jade",
+	command = "set filetype=pug",
+})
