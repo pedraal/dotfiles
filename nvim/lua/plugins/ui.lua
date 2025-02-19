@@ -1,5 +1,89 @@
 return {
 	{
+		"goolord/alpha-nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+
+		config = function()
+			local alpha = require("alpha")
+			local dashboard = require("alpha.themes.startify")
+
+			dashboard.section.header.val = {
+				[[                                                                       ]],
+				[[                                                                       ]],
+				[[                                                                       ]],
+				[[                                                                       ]],
+				[[                                                                     ]],
+				[[       ████ ██████           █████      ██                     ]],
+				[[      ███████████             █████                             ]],
+				[[      █████████ ███████████████████ ███   ███████████   ]],
+				[[     █████████  ███    █████████████ █████ ██████████████   ]],
+				[[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
+				[[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
+				[[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
+				[[                                                                       ]],
+				[[                                                                       ]],
+				[[                                                                       ]],
+			}
+
+			alpha.setup(dashboard.opts)
+		end,
+	},
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("catppuccin")
+		end,
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		config = function()
+			require("lualine").setup({
+				options = {
+					icons_enabled = true,
+					theme = "dracula",
+					component_separators = { left = "", right = "" },
+					section_separators = { left = "", right = "" },
+					disabled_filetypes = {
+						statusline = {},
+						winbar = {},
+					},
+					ignore_focus = {},
+					always_divide_middle = true,
+					globalstatus = false,
+					refresh = {
+						statusline = 1000,
+						tabline = 1000,
+						winbar = 1000,
+					},
+				},
+				sections = {
+					lualine_a = { "mode" },
+					lualine_b = { "branch", "diff", "diagnostics" },
+					lualine_c = { { "filename", path = 1 } },
+					lualine_x = { "encoding", "fileformat", "filetype" },
+					lualine_y = { "progress" },
+					lualine_z = { "location" },
+				},
+				inactive_sections = {
+					lualine_a = {},
+					lualine_b = {},
+					lualine_c = { { "filename", path = 1 } },
+					lualine_x = { "location" },
+					lualine_y = {},
+					lualine_z = {},
+				},
+				tabline = {},
+				winbar = {},
+				inactive_winbar = {},
+				extensions = {},
+			})
+		end,
+	},
+	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
 		dependencies = {
@@ -40,6 +124,8 @@ return {
 			vim.keymap.set("v", "<leader>f", builtin.grep_string, {})
 			vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
 			vim.keymap.set("n", "<leader>t", builtin.treesitter, {})
+			vim.keymap.set("n", "<leader>;", builtin.commands, {})
+			vim.keymap.set("n", "<leader>:", builtin.command_history, {})
 			vim.keymap.set("n", "<leader>B", builtin.builtin, {})
 			require("telescope").load_extension("media_files")
 			vim.keymap.set("n", "<leader>M", require('telescope').extensions.media_files.media_files, {})

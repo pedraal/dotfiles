@@ -7,26 +7,26 @@ vim.cmd("set shiftwidth=2")
 vim.cmd("set shortmess+=csCFSW")
 vim.cmd("set cc=80")
 vim.cmd("set scrolloff=8")
+vim.wo.number = true
 vim.wo.relativenumber = true
-
-local keymap = vim.keymap.set
-local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-keymap("n", "<c-h>", ":wincmd h<CR>", opts)
-keymap("n", "<c-j>", ":wincmd j<CR>", opts)
-keymap("n", "<c-k>", ":wincmd k<CR>", opts)
-keymap("n", "<c-l>", ":wincmd l<CR>", opts)
+local opts = { noremap = true, silent = true }
 
-keymap({ "n", "v" }, "<leader>y", '"+y', opts)
-keymap({ "n", "v" }, "<leader>p", '"+p', opts)
+vim.keymap.set("n", "<c-h>", ":wincmd h<CR>", opts)
+vim.keymap.set("n", "<c-j>", ":wincmd j<CR>", opts)
+vim.keymap.set("n", "<c-k>", ":wincmd k<CR>", opts)
+vim.keymap.set("n", "<c-l>", ":wincmd l<CR>", opts)
 
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', opts)
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', opts)
 
-keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
+vim.keymap.set("v", "<", "<gv", opts)
+vim.keymap.set("v", ">", ">gv", opts)
+
+vim.keymap.set("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.jade",

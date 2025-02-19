@@ -1,5 +1,18 @@
 return {
 	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		config = function()
+			local configs = require("nvim-treesitter.configs")
+			configs.setup({
+				auto_install = true,
+				sync_install = false,
+				highlight = { enable = true },
+				indent = { enable = true },
+			})
+		end,
+	},
+	{
 		"williamboman/mason.nvim",
 		lazy = false,
 		config = function()
@@ -130,5 +143,16 @@ return {
 		event = { "CmdlineEnter" },
 		ft = { "go", 'gomod' },
 		build = ':lua require("go.install").update_all_sync()'
+	},
+	{
+		"luckasRanarison/tailwind-tools.nvim",
+		name = "tailwind-tools",
+		build = ":UpdateRemotePlugins",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-telescope/telescope.nvim",
+			"neovim/nvim-lspconfig",
+		},
+		opts = {},
 	}
 }
