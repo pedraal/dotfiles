@@ -1,19 +1,13 @@
 after-login-command = []
-after-startup-command = [
-  'exec-and-forget borders active_color=0xaab4befe inactive_color=0x00000000 width=6.0',
-  # 'exec-and-forget sketchybar'
-]
+after-startup-command = []
 
-# exec-on-workspace-change = [
-#   '/bin/bash', '-c',
-#   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
-# ]
+exec-on-workspace-change = []
 
 start-at-login = true
 
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
-accordion-padding = 6 
+accordion-padding = 6
 default-root-container-layout = 'tiles'
 default-root-container-orientation = 'auto'
 key-mapping.preset = 'qwerty'
@@ -67,8 +61,7 @@ alt-shift-semicolon = 'mode service'
 
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
-#s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
+r = ['flatten-workspace-tree', 'mode main']
 f = [
   'layout floating tiling',
   'mode main',
