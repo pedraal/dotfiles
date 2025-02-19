@@ -6,3 +6,4 @@ font-family-bold-italic = "DaddyTimeMono Nerd Font"
 window-padding-balance = true
 macos-titlebar-style = hidden
 copy-on-select = true
+cursor-text = #000000
