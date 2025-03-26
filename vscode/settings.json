@@ -136,4 +136,6 @@
   "css.validate": false,
   "editor.gotoLocation.multipleDefinitions": "goto",
   "diffEditor.ignoreTrimWhitespace": true,
+  "cursor.cpp.enablePartialAccepts": true,
+  "cursor.composer.collapsePaneInputBoxPills": true,
 }
