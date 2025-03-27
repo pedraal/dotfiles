@@ -57,14 +57,14 @@ return {
 			require("mini.trailspace").setup({})
 		end,
 	},
-	{
-		"3rd/image.nvim",
-		version = '*',
-		build = false,
-		opts = {
-			processor = "magick_cli"
-		}
-	},
+	-- {
+	-- 	"3rd/image.nvim",
+	-- 	version = '*',
+	-- 	build = false,
+	-- 	opts = {
+	-- 		processor = "magick_cli"
+	-- 	}
+	-- },
 	{
 		"nvim-pack/nvim-spectre",
 		version = '*',

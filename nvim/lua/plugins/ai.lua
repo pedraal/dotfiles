@@ -1,35 +1,77 @@
 return {
-	-- { "github/copilot.vim" }
+	-- { "github/copilot.vim" },
+	-- {
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	cmd = "Copilot",
+	-- 	event = "InsertEnter",
+	-- 	config = function()
+	-- 		require('copilot').setup({
+	-- 			panel = {
+	-- 				enabled = true,
+	-- 				auto_refresh = false,
+	-- 				keymap = {
+	-- 					jump_prev = "[[",
+	-- 					jump_next = "]]",
+	-- 					accept = "<CR>",
+	-- 					refresh = "gr",
+	-- 					open = "<M-CR>"
+	-- 				},
+	-- 				layout = {
+	-- 					position = "bottom", -- | top | left | right | horizontal | vertical
+	-- 					ratio = 0.4
+	-- 				},
+	-- 			},
+	-- 			suggestion = {
+	-- 				enabled = true,
+	-- 				auto_trigger = true,
+	-- 				hide_during_completion = true,
+	-- 				debounce = 75,
+	-- 				keymap = {
+	-- 					accept = "<C-CR>",
+	-- 					accept_word = false,
+	-- 					accept_line = false,
+	-- 					next = "<M-]>",
+	-- 					prev = "<M-[>",
+	-- 					dismiss = "<C-]>",
+	-- 				},
+	-- 			},
+	-- 			filetypes = {
+	-- 				yaml = false,
+	-- 				markdown = false,
+	-- 				help = false,
+	-- 				gitcommit = false,
+	-- 				gitrebase = false,
+	-- 				hgcommit = false,
+	-- 				svn = false,
+	-- 				cvs = false,
+	-- 				["."] = false,
+	-- 			},
+	-- 			copilot_node_command = 'node', -- Node.js version must be > 18.x
+	-- 			server_opts_overrides = {},
+	-- 		})
+	-- 	end,
+	-- }
 	-- {
 	-- 	"yetone/avante.nvim",
 	-- 	event = "VeryLazy",
-	-- 	lazy = false,
-	-- 	version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+	-- 	version = false, -- Never set this value to "*"! Never!
 	-- 	opts = {
-	-- 		-- add any opts here
-	-- 		-- for example
-	-- 		-- provider = "claude",
-	-- 		-- openai = {
-	-- 		-- 	endpoint = "https://api.openai.com/v1",
-	-- 		-- 	model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-	-- 		-- 	timeout = 30000, -- timeout in milliseconds
-	-- 		-- 	temperature = 0, -- adjust if needed
-	-- 		-- 	max_tokens = 4096,
-	-- 		-- },
+	-- 		auto_suggestions_provider = "ollama",
 	-- 		provider = "ollama",
-	-- 		vendors = {
-	-- 			ollama = {
-	-- 				__inherited_from = "openai",
-	-- 				api_key_name = "",
-	-- 				endpoint = "http://127.0.0.1:11434/v1",
-	-- 				model = "codegemma",
-	-- 			},
+	-- 		ollama = {
+	-- 			endpoint = "http://192.168.1.211:8888", -- Note that there is no /v1 at the end.
+	-- 			model = "codegemma",
+	-- 			disable_tools = true
 	-- 		},
+	-- 		behaviour = {
+	-- 			auto_suggestions = true
+	-- 		}
 	-- 	},
 	-- 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 	-- 	build = "make",
 	-- 	-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
 	-- 	dependencies = {
+	-- 		"nvim-treesitter/nvim-treesitter",
 	-- 		"stevearc/dressing.nvim",
 	-- 		"nvim-lua/plenary.nvim",
 	-- 		"MunifTanjim/nui.nvim",
@@ -61,9 +103,9 @@ return {
 	-- 			-- Make sure to set this up properly if you have lazy=true
 	-- 			'MeanderingProgrammer/render-markdown.nvim',
 	-- 			opts = {
-	-- 				file_types = { "Avante", "markdown" },
+	-- 				file_types = { "Avante" },
 	-- 			},
-	-- 			ft = { "Avante", "markdown" },
+	-- 			ft = { "Avante" },
 	-- 		},
 	-- 	},
 	-- }

@@ -9,6 +9,7 @@ vim.cmd("set cc=80")
 vim.cmd("set scrolloff=8")
 vim.wo.number = true
 vim.wo.relativenumber = true
+vim.opt.winbar = "%f"
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -32,3 +33,9 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = "*.jade",
 	command = "set filetype=pug",
 })
+
+vim.api.nvim_create_user_command('Wf', function()
+	local file_path = vim.fn.expand('%:p')
+	vim.fn.setreg('+', file_path)
+	vim.notify("Copied: " .. file_path)
+end, {})

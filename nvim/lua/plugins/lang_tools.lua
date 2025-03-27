@@ -13,6 +13,12 @@ return {
 		end,
 	},
 	{
+		"nvim-treesitter/nvim-treesitter-context",
+		config = function()
+			require("treesitter-context").setup()
+		end,
+	},
+	{
 		"williamboman/mason.nvim",
 		lazy = false,
 		config = function()
@@ -30,6 +36,7 @@ return {
 		"neovim/nvim-lspconfig",
 		lazy = false,
 		config = function()
+			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local function is_eslint_active()
@@ -42,21 +49,20 @@ return {
 				return false
 			end
 
+			local vue_language_server_path = nil
+			local mason_registry_ok, mason_registry = pcall(require, "mason-registry")
 
-			local mason_registry = require('mason-registry')
-			local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path()
+			if mason_registry_ok then
+				local vue_pkg_ok, vue_pkg = pcall(function()
+					return mason_registry.get_package('vue-language-server')
+				end)
 
-			local lspconfig = require("lspconfig")
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.gleam.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.ts_ls.setup({
+				if vue_pkg_ok and vue_pkg then
+					vue_language_server_path = vue_pkg:get_install_path()
+				end
+			end
+
+			local ts_config = {
 				capabilities = capabilities,
 				root_dir = lspconfig.util.root_pattern("package.json"),
 				single_file_support = false,
@@ -64,7 +70,10 @@ return {
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
 				end,
-				init_options = {
+			}
+
+			if vue_language_server_path then
+				ts_config.init_options = {
 					plugins = {
 						{
 							name = '@vue/typescript-plugin',
@@ -72,9 +81,11 @@ return {
 							languages = { 'vue' },
 						},
 					},
-				},
-				-- filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-			})
+				}
+			end
+
+			lspconfig.ts_ls.setup(ts_config)
+
 			lspconfig.denols.setup({
 				capabilities = capabilities,
 				root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
@@ -107,9 +118,19 @@ return {
 					}
 				}
 			})
+			lspconfig.gopls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.lua_ls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.gleam.setup({
+				capabilities = capabilities,
+			})
 
 			vim.keymap.set("n", "gh", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+			vim.keymap.set("n", "gr", vim.lsp.buf.rename, {})
 			vim.keymap.set("n", "ff", vim.lsp.buf.format, {})
 			vim.keymap.set({ "n", "v" }, "ga", vim.lsp.buf.code_action, {})
 			vim.keymap.set("n", "gD", vim.diagnostic.open_float, {})

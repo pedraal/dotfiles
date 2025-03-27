@@ -14,6 +14,7 @@ return {
 		config = function()
 			local cmp = require("cmp")
 			require("luasnip.loaders.from_vscode").lazy_load()
+			require("luasnip").filetype_extend("javascript", { "jsdoc" })
 
 			cmp.setup({
 				snippet = {

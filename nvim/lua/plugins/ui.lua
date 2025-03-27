@@ -35,6 +35,9 @@ return {
 		name = "catppuccin",
 		priority = 1000,
 		config = function()
+			require("catppuccin").setup({
+				flavour = "mocha"
+			})
 			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
@@ -64,7 +67,7 @@ return {
 					lualine_a = { "mode" },
 					lualine_b = { "branch", "diff", "diagnostics" },
 					lualine_c = { { "filename", path = 1 } },
-					lualine_x = { "encoding", "fileformat", "filetype" },
+					lualine_x = {},
 					lualine_y = { "progress" },
 					lualine_z = { "location" },
 				},
@@ -159,27 +162,38 @@ return {
 			vim.keymap.set("n", "<leader>e", function()
 				harpoon.ui:toggle_quick_menu(harpoon:list())
 			end)
+			harpoon:extend({
+				UI_CREATE = function(cx)
+					vim.keymap.set("n", "<C-v>", function()
+						harpoon.ui:select_menu_item({ vsplit = true })
+					end, { buffer = cx.bufnr })
 
-			-- vim.keymap.set("n", "<C-h>", function()
-			-- 	harpoon:list():select(1)
-			-- end)
-			-- vim.keymap.set("n", "<C-t>", function()
-			-- 	harpoon:list():select(2)
-			-- end)
-			-- vim.keymap.set("n", "<C-n>", function()
-			-- 	harpoon:list():select(3)
-			-- end)
-			-- vim.keymap.set("n", "<C-s>", function()
-			-- 	harpoon:list():select(4)
-			-- end)
+					vim.keymap.set("n", "<C-x>", function()
+						harpoon.ui:select_menu_item({ split = true })
+					end, { buffer = cx.bufnr })
+				end,
+			})
+
+			vim.keymap.set("n", "<leader>1", function()
+				harpoon:list():select(1)
+			end)
+			vim.keymap.set("n", "<leader>2", function()
+				harpoon:list():select(2)
+			end)
+			vim.keymap.set("n", "<leader>3", function()
+				harpoon:list():select(3)
+			end)
+			vim.keymap.set("n", "<leader>4", function()
+				harpoon:list():select(4)
+			end)
 
 			-- Toggle previous & next buffers stored within Harpoon list
-			vim.keymap.set("n", "<C-P>", function()
-				harpoon:list():prev()
-			end)
-			vim.keymap.set("n", "<C-N>", function()
-				harpoon:list():next()
-			end)
+			-- vim.keymap.set("n", "<C-P>", function()
+			-- 	harpoon:list():prev()
+			-- end)
+			-- vim.keymap.set("n", "<C-N>", function()
+			-- 	harpoon:list():next()
+			-- end)
 
 			-- local conf = require("telescope.config").values
 			-- local function toggle_telescope(harpoon_files)
