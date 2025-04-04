@@ -1,5 +1,3 @@
-vim.opt.termguicolors = true
-
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=2")
@@ -9,7 +7,10 @@ vim.cmd("set cc=80")
 vim.cmd("set scrolloff=8")
 vim.wo.number = true
 vim.wo.relativenumber = true
-vim.opt.winbar = "%f"
+vim.o.winbar = "%f"
+vim.o.showmode = false
+vim.o.termguicolors = true
+vim.o.autoread = true
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
