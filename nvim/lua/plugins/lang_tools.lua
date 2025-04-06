@@ -29,7 +29,18 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
 		opts = {
-			auto_install = true,
+			ensure_installed = {
+				"denols@2.2.7",
+				"biome@1.9.4",
+				"eslint@4.10.0",
+				"html@4.10.0",
+				"jsonls@4.10.0",
+				"lua_ls@3.13.9",
+				"stylelint_lsp@2.0.1",
+				"tailwindcss@0.14.13",
+				"ts_ls@4.3.4",
+				"volar@2.2.6",
+			},
 		},
 	},
 	{
@@ -118,9 +129,9 @@ return {
 					}
 				}
 			})
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
-			})
+			-- lspconfig.gopls.setup({
+			-- 	capabilities = capabilities,
+			-- })
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			})
@@ -142,29 +153,29 @@ return {
 			})
 		end,
 	},
-	{
-		"ray-x/go.nvim",
-		dependencies = {
-			"ray-x/guihua.lua",
-			"neovim/nvim-lspconfig",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			require("go").setup()
-
-
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				pattern = "*.go",
-				callback = function()
-					require('go.format').goimports()
-				end,
-				group = format_sync_grp,
-			})
-		end,
-		event = { "CmdlineEnter" },
-		ft = { "go", 'gomod' },
-		build = ':lua require("go.install").update_all_sync()'
-	},
+	-- {
+	-- 	"ray-x/go.nvim",
+	-- 	dependencies = {
+	-- 		"ray-x/guihua.lua",
+	-- 		"neovim/nvim-lspconfig",
+	-- 		"nvim-treesitter/nvim-treesitter",
+	-- 	},
+	-- 	config = function()
+	-- 		require("go").setup()
+	--
+	--
+	-- 		vim.api.nvim_create_autocmd("BufWritePre", {
+	-- 			pattern = "*.go",
+	-- 			callback = function()
+	-- 				require('go.format').goimports()
+	-- 			end,
+	-- 			group = format_sync_grp,
+	-- 		})
+	-- 	end,
+	-- 	event = { "CmdlineEnter" },
+	-- 	ft = { "go", 'gomod' },
+	-- 	build = ':lua require("go.install").update_all_sync()'
+	-- },
 	{
 		"luckasRanarison/tailwind-tools.nvim",
 		name = "tailwind-tools",
