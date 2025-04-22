@@ -1,16 +1,23 @@
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
 vim.cmd("set shortmess+=csCFSW")
-vim.cmd("set cc=80")
-vim.cmd("set scrolloff=8")
-vim.wo.number = true
-vim.wo.relativenumber = true
-vim.o.winbar = "%f"
-vim.o.showmode = false
-vim.o.termguicolors = true
-vim.o.autoread = true
+
+vim.opt.expandtab = true
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.colorcolumn = "80"
+vim.opt.scrolloff = 8
+vim.opt.showmode = false
+vim.opt.termguicolors = true
+
+vim.opt.autoread = true
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
+vim.opt.updatetime = 50
+
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "

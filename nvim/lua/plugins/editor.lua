@@ -1,89 +1,101 @@
 return {
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-		opts = {
-			indent = {
-				char = "│",
-				tab_char = "│",
-			},
-			scope = {
-				enabled = true,
-			},
-			exclude = {
-				filetypes = {
-					"help",
-					"alpha",
-					"dashboard",
-					"neo-tree",
-					"Trouble",
-					"trouble",
-					"lazy",
-					"mason",
-					"notify",
-					"toggleterm",
-					"lazyterm",
-				},
-			},
-		},
-		main = "ibl",
-	},
-	{ "numToStr/Comment.nvim", opts = {} },
-	{
-		"kylechui/nvim-surround",
-		version = "*",
-		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({})
-		end,
-	},
-	{
-		"tpope/vim-sleuth",
-		version = '*',
-	},
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {}, -- this is equalent to setup({}) function
-	},
-	{
-		'echasnovski/mini.nvim',
-		version = '*',
-	},
-	{
-		'echasnovski/mini.trailspace',
-		version = '*',
-		config = function()
-			require("mini.trailspace").setup({})
-		end,
-	},
-	-- {
-	-- 	"3rd/image.nvim",
-	-- 	version = '*',
-	-- 	build = false,
-	-- 	opts = {
-	-- 		processor = "magick_cli"
-	-- 	}
-	-- },
-	{
-		"nvim-pack/nvim-spectre",
-		version = '*',
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		config = function()
-			vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {})
-		end,
-	},
-	{
-		"lewis6991/gitsigns.nvim",
-		config = function()
-			require('gitsigns').setup()
+  {
+    "christoomey/vim-tmux-navigator",
+    vim.keymap.set("n", "C-h", ":TmuxNavigateLeft<CR>"),
+    vim.keymap.set("n", "C-j", ":TmuxNavigateDown<CR>"),
+    vim.keymap.set("n", "C-k", ":TmuxNavigateUp<CR>"),
+    vim.keymap.set("n", "C-l", ":TmuxNavigateRight<CR>"),
+  },
+  {
+    "nvim-pack/nvim-spectre",
+    version = '*',
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {})
+    end,
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require('gitsigns').setup()
 
-			vim.keymap.set("n", "<leader>gh", ":Gitsigns preview_hunk<CR>", {})
-			vim.keymap.set("n", "<leader>gl", ":Gitsigns toggle_current_line_blame<CR>", {})
-			vim.keymap.set("n", "<leader>gn", ":Gitsigns next_hunk<CR>", {})
-			vim.keymap.set("n", "<leader>gp", ":Gitsigns prev_hunk<CR>", {})
-		end
-	},
+      vim.keymap.set("n", "<leader>gh", ":Gitsigns preview_hunk<CR>", {})
+      vim.keymap.set("n", "<leader>gl", ":Gitsigns toggle_current_line_blame<CR>", {})
+      vim.keymap.set("n", "<leader>gn", ":Gitsigns next_hunk<CR>", {})
+      vim.keymap.set("n", "<leader>gp", ":Gitsigns prev_hunk<CR>", {})
+    end
+  },
+  -- {
+  --   "laytan/cloak.nvim",
+  --   config = function()
+  --     require("cloak").setup({
+  --       enabled = true,
+  --       cloak_character = "*",
+  --       highlight_group = "Comment",
+  --       patterns = {
+  --         {
+  --           file_pattern = {
+  --             ".env*",
+  --             "*.env*",
+  --           },
+  --           cloak_pattern = "=.+"
+  --         },
+  --       },
+  --     })
+  --   end
+  -- },
+  {
+    'echasnovski/mini.nvim',
+    version = '*',
+  },
+  {
+    'echasnovski/mini.trailspace',
+    version = '*',
+    config = function()
+      require("mini.trailspace").setup({})
+    end,
+  },
+  {
+    'echasnovski/mini.pairs',
+    version = '*',
+    config = function()
+      require("mini.pairs").setup({})
+    end,
+  },
+  {
+    'echasnovski/mini.comment',
+    version = '*',
+    dependencies = {
+      'JoosepAlviste/nvim-ts-context-commentstring'
+    },
+    config = function()
+      require("mini.comment").setup({
+        hooks = {
+          pre = function()
+            require('ts_context_commentstring.internal').update_commentstring()
+          end,
+        },
+      })
+    end,
+  },
+  {
+    'echasnovski/mini.surround',
+    version = '*',
+    config = function()
+      require("mini.surround").setup({})
+    end,
+  },
+  {
+    'echasnovski/mini.indentscope',
+    version = '*',
+    config = function()
+      require("mini.indentscope").setup({
+        draw = {
+          delay = 1
+        }
+      })
+    end,
+  },
 }
