@@ -108,6 +108,9 @@ return {
       lspconfig.html.setup({
         capabilities = capabilities,
       })
+      lspconfig.jsonls.setup({
+        capabilities = capabilities,
+      })
       lspconfig.stylelint_lsp.setup({
         capabilities = capabilities,
       })
