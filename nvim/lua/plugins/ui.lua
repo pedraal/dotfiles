@@ -47,9 +47,21 @@ return {
     config = function()
       local theme = require("catppuccin.utils.lualine")
       local flavor = theme("mocha")
-      flavor.normal.c.bg = 'NONE'
-      flavor.inactive.a.bg = 'NONE'
-      flavor.inactive.c.bg = 'NONE'
+
+      local function custom_filename(context)
+        local filename = vim.fn.expand('%:~:.')
+        local filetype = vim.bo.filetype
+
+        if context ~= "section" and filetype == "Avante" then
+          return " "
+        elseif filename == "[No Name]" then
+          return " "
+        else
+          return filename
+        end
+      end
+
+      vim.cmd.highlight('MsgArea guibg=#181825')
 
       require("lualine").setup({
         options = {
@@ -62,7 +74,7 @@ return {
           }
         },
         winbar = {
-          lualine_a = { { 'filename', path = 1, } },
+          lualine_a = { { custom_filename, args = { "winbar" } } },
           lualine_b = {},
           lualine_c = {},
           lualine_x = {},
@@ -70,7 +82,7 @@ return {
           lualine_z = {},
         },
         inactive_winbar = {
-          lualine_a = { { 'filename', path = 1, } },
+          lualine_a = { { custom_filename, args = { "winbar" } } },
           lualine_b = {},
           lualine_c = {},
           lualine_x = {},
@@ -80,13 +92,13 @@ return {
         sections = {
           lualine_a = { 'mode' },
           lualine_b = { 'branch' },
-          lualine_c = { { 'filename', path = 1, }, 'diagnostics' },
+          lualine_c = { { custom_filename, args = { "sections" } }, 'diagnostics' },
           lualine_x = {},
           lualine_y = { 'progress' },
           lualine_z = { 'location' },
         },
         inactive_sections = {
-          lualine_a = { { 'filename', path = 1, } },
+          lualine_a = { { custom_filename, args = { "sections" } } },
           lualine_b = {},
           lualine_c = {},
           lualine_x = {},
