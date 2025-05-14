@@ -30,8 +30,8 @@ return {
     lazy = false,
     opts = {
       ensure_installed = {
-        "denols@2.2.7",
-        "biome@1.9.4",
+        -- "denols@2.2.7",
+        -- "biome@1.9.4",
         "eslint@4.10.0",
         "html@4.10.0",
         "jsonls@4.10.0",
@@ -97,14 +97,14 @@ return {
 
       lspconfig.ts_ls.setup(ts_config)
 
-      lspconfig.denols.setup({
-        capabilities = capabilities,
-        root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-      })
-      lspconfig.biome.setup({
-        capabilities = capabilities,
-        root_dir = lspconfig.util.root_pattern("biome.json", "biome.jsonc"),
-      })
+      -- lspconfig.denols.setup({
+      --   capabilities = capabilities,
+      --   root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+      -- })
+      -- lspconfig.biome.setup({
+      --   capabilities = capabilities,
+      --   root_dir = lspconfig.util.root_pattern("biome.json", "biome.jsonc"),
+      -- })
       lspconfig.html.setup({
         capabilities = capabilities,
       })
@@ -113,6 +113,9 @@ return {
       })
       lspconfig.stylelint_lsp.setup({
         capabilities = capabilities,
+        settings = {
+          autoFixOnSave = true
+        }
       })
       lspconfig.eslint.setup({
         capabilities = capabilities,

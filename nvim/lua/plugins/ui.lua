@@ -48,33 +48,20 @@ return {
       local theme = require("catppuccin.utils.lualine")
       local flavor = theme("mocha")
 
-      local function custom_filename(context)
-        local filename = vim.fn.expand('%:~:.')
-        local filetype = vim.bo.filetype
-
-        if context ~= "section" and filetype == "Avante" then
-          return " "
-        elseif filename == "[No Name]" then
-          return " "
-        else
-          return filename
-        end
-      end
-
       vim.cmd.highlight('MsgArea guibg=#181825')
 
       require("lualine").setup({
         options = {
           theme = flavor,
           component_separators = {},
-          section_separators = {},
+          section_separators = { left = '', right = '' },
           disabled_filetypes = {
             'neo-tree',
             'alpha'
           }
         },
         winbar = {
-          lualine_a = { { custom_filename, args = { "winbar" } } },
+          lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' }, separator = { left = '', right = '' } } },
           lualine_b = {},
           lualine_c = {},
           lualine_x = {},
@@ -82,7 +69,7 @@ return {
           lualine_z = {},
         },
         inactive_winbar = {
-          lualine_a = { { custom_filename, args = { "winbar" } } },
+          lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' } } },
           lualine_b = {},
           lualine_c = {},
           lualine_x = {},
@@ -90,15 +77,15 @@ return {
           lualine_z = {},
         },
         sections = {
-          lualine_a = { 'mode' },
+          lualine_a = { { 'mode', separator = { left = '', right = '' } } },
           lualine_b = { 'branch' },
-          lualine_c = { { custom_filename, args = { "sections" } }, 'diagnostics' },
+          lualine_c = { { 'filename', path = 1, symbols = { unnamed = '' } }, 'diagnostics' },
           lualine_x = {},
           lualine_y = { 'progress' },
-          lualine_z = { 'location' },
+          lualine_z = { { 'location', separator = { left = '', right = '' } } },
         },
         inactive_sections = {
-          lualine_a = { { custom_filename, args = { "sections" } } },
+          lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' } } },
           lualine_b = {},
           lualine_c = {},
           lualine_x = {},
@@ -129,19 +116,19 @@ return {
             },
           },
         },
-        window = {
-          position = "right",
-        },
-        event_handlers = {
-          {
-            event = "file_open_requested",
-            handler = function()
-              require("neo-tree.command").execute({ action = "close" })
-            end
-          },
-        }
+        -- window = {
+        --   position = "right",
+        -- },
+        -- event_handlers = {
+        --   {
+        --     event = "file_open_requested",
+        --     handler = function()
+        --       require("neo-tree.command").execute({ action = "close" })
+        --     end
+        --   },
+        -- }
       })
-      vim.keymap.set("n", "<leader>b", ":Neotree filesystem reveal right<CR>", {})
+      vim.keymap.set("n", "<leader>b", ":Neotree filesystem reveal float<CR>", {})
     end,
   },
   {
