@@ -1,0 +1,151 @@
+SCRIPTS_DIR="$CONFIG_DIR/scripts"
+
+source ./colors.sh
+spacing=6
+
+bar=(
+  position=top
+  height=36
+  color=0x0000000
+  display=main
+  padding_left=12
+  padding_right=12
+  font_smoothing=true
+)
+
+default=(
+  padding_right="$spacing"
+  background.corner_radius=6
+  background.height=26
+  icon.font="Hack Nerd Font:Bold:17.0"
+  label.font="DaddyTimeMono Nerd Font:Bold:14.0"
+  icon.color="$white"
+  label.color="$white"
+  icon.font.size=20.0
+)
+
+label_default=(
+  label.padding_left=14
+  label.padding_right=8
+  background.color="$background"
+  background.padding_left=-7
+)
+
+icon_default=(
+  background.drawing=on
+  icon.padding_left=10
+  icon.padding_right=8
+)
+
+sketchybar -m --bar "${bar[@]}"
+sketchybar -m --default "${default[@]}"
+
+##### Aerospace Indicators #####
+sketchybar -m --add event aerospace_workspace_change
+sketchybar -m --add event aerospace_mode_change
+
+sketchybar -m --add item aerospace_mode left \
+              --subscribe aerospace_mode aerospace_mode_change \
+              --set aerospace_mode \
+                    "${icon_default[@]}" \
+                    padding_right=12 \
+                    background.color="$green" \
+                    icon=󰕮 \
+                    script="$SCRIPTS_DIR/aerospace_mode.sh"
+
+declare -a spaces=(
+  "1 󱧌"
+  "T "
+  "B 󰖟"
+  "2 󰫤"
+  "3 󰫢"
+  "4 "
+  "V "
+)
+
+for space in "${spaces[@]}"; do
+  letter="${space%% *}"
+  icon="${space#* }"
+
+  sketchybar -m --add item space.$letter left \
+                --subscribe space.$letter aerospace_workspace_change \
+                --set space.$letter \
+                  background.color="$background" \
+                  background.height=26 \
+                  icon="$icon" \
+                  icon.padding_left=10 \
+                  icon.padding_right=8 \
+                  label.padding_left=0 \
+                  label.padding_right=0 \
+                  script="$SCRIPTS_DIR/aerospace.sh $letter"
+done
+
+
+
+sketchybar -m --default padding_left="$spacing" padding_right=0
+
+sketchybar -m --add item clock_label right \
+              --set clock_label \
+                    "${label_default[@]}" \
+                    update_freq=10 \
+                    script="$SCRIPTS_DIR/clock.sh"
+sketchybar -m --add item clock_icon right \
+              --set clock_icon \
+                    "${icon_default[@]}" \
+                    background.color="$maroon" \
+                    icon=
+
+sketchybar -m --add item volume_label right \
+              --subscribe volume_label volume_change \
+              --set volume_label \
+                    "${label_default[@]}" \
+                    script="$SCRIPTS_DIR/volume.sh"
+sketchybar -m --add item volume_icon right \
+              --set volume_icon \
+                    background.color="$peach" \
+                    "${icon_default[@]}"
+
+sketchybar -m --add item battery_label right \
+              --subscribe battery_label system_woke power_source_change \
+              --set battery_label \
+                    "${label_default[@]}" \
+                    script="$SCRIPTS_DIR/battery.sh"
+sketchybar -m --add item battery_icon right \
+              --set battery_icon \
+                    background.color="$green" \
+                    "${icon_default[@]}"
+
+sketchybar -m --add item cpu_label right \
+              --set cpu_label \
+                    "${label_default[@]}" \
+                    update_freq=10 \
+                    script="$SCRIPTS_DIR/cpu.sh"
+sketchybar -m --add item cpu_icon right \
+              --set cpu_icon \
+                    background.color="$red" \
+                    icon= \
+                    "${icon_default[@]}"
+
+sketchybar -m --add item ram_label right \
+              --set ram_label \
+                    "${label_default[@]}" \
+                    update_freq=10 \
+                    script="$SCRIPTS_DIR/ram.sh"
+sketchybar -m --add item ram_icon right \
+              --set ram_icon \
+                    background.color="$red" \
+                    icon= \
+                    "${icon_default[@]}"
+
+
+sketchybar -m --add item vpn right \
+              --set vpn \
+                    icon=󰻌 \
+                    background.color="$red" \
+                    drawing=off \
+                    update_freq=5 \
+                    script="$SCRIPTS_DIR/vpn.sh" \
+                    "${icon_default[@]}"
+
+##### Force all scripts to run #####
+sketchybar -m --update
