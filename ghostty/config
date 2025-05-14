@@ -8,4 +8,3 @@ window-padding-balance = true
 macos-titlebar-style = hidden
 copy-on-select = true
 cursor-text = #000000
-macos-option-as-alt = true
