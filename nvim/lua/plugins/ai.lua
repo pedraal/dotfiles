@@ -1,43 +1,39 @@
 return {
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({
-        panel = { enabled = false },
-        suggestion = { enabled = false },
-        copilot_model = "gpt-4o-copilot"
-      })
-    end,
-  },
-  {
-    "olimorris/codecompanion.nvim",
-    opts = {},
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      {
-        "MeanderingProgrammer/render-markdown.nvim",
-        ft = { "codecompanion" }
-      },
-    },
-    config = function()
-      require("codecompanion").setup({
-        strategies = {
-          chat = {
-            adapter = "copilot",
-          },
-          inline = {
-            adapter = "copilot",
-          },
-        },
-      })
-
-      vim.keymap.set("n", "<leader>aa", ":CodeCompanionChat<CR>")
-      vim.keymap.set("n", "<leader>ae", ":CodeCompanion<CR>")
-      vim.keymap.set("v", "<leader>ae", ":'<,'>CodeCompanion<CR>")
-      vim.keymap.set("n", "<leader>ap", ":CodeCompanionActions<CR>")
-    end,
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("copilot").setup({
+  --       panel = { enabled = false },
+  --       suggestion = { enabled = false },
+  --       copilot_model = "gpt-4o-copilot"
+  --     })
+  --   end,
+  -- },
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   opts = {},
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   config = function()
+  --     require("codecompanion").setup({
+  --       strategies = {
+  --         chat = {
+  --           adapter = "copilot",
+  --         },
+  --         inline = {
+  --           adapter = "copilot",
+  --         },
+  --       },
+  --     })
+  --
+  --     vim.keymap.set("n", "<leader>aa", ":CodeCompanionChat<CR>")
+  --     vim.keymap.set("n", "<leader>ae", ":CodeCompanion<CR>")
+  --     vim.keymap.set("v", "<leader>ae", ":'<,'>CodeCompanion<CR>")
+  --     vim.keymap.set("n", "<leader>ap", ":CodeCompanionActions<CR>")
+  --   end,
+  -- },
 }
