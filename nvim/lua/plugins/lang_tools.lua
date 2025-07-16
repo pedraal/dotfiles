@@ -30,8 +30,7 @@ return {
     lazy = false,
     opts = {
       ensure_installed = {
-        -- "denols@2.2.7",
-        -- "biome@1.9.4",
+        "biome@1.9.4",
         "eslint@4.10.0",
         "html@4.10.0",
         "jsonls@4.10.0",
@@ -40,6 +39,9 @@ return {
         "tailwindcss@0.14.13",
         "ts_ls@4.3.4",
         "volar@2.2.6",
+        -- "volar@3.0.1",
+        "templ@v0.3.865",
+        "htmx@0.1.0"
       },
     },
   },
@@ -97,16 +99,20 @@ return {
 
       lspconfig.ts_ls.setup(ts_config)
 
-      -- lspconfig.denols.setup({
-      --   capabilities = capabilities,
-      --   root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-      -- })
-      -- lspconfig.biome.setup({
-      --   capabilities = capabilities,
-      --   root_dir = lspconfig.util.root_pattern("biome.json", "biome.jsonc"),
-      -- })
+      lspconfig.denols.setup({
+        capabilities = capabilities,
+        root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+      })
+      lspconfig.biome.setup({
+        capabilities = capabilities,
+        root_dir = lspconfig.util.root_pattern("biome.json", "biome.jsonc"),
+      })
       lspconfig.html.setup({
         capabilities = capabilities,
+      })
+      lspconfig.htmx.setup({
+        capabilities = capabilities,
+        filetypes = { "html", "templ" },
       })
       lspconfig.jsonls.setup({
         capabilities = capabilities,
@@ -135,9 +141,12 @@ return {
           }
         }
       })
-      -- lspconfig.gopls.setup({
-      -- 	capabilities = capabilities,
-      -- })
+      lspconfig.gopls.setup({
+        capabilities = capabilities,
+      })
+      lspconfig.templ.setup({
+        capabilities = capabilities,
+      })
       lspconfig.lua_ls.setup({
         capabilities = capabilities,
       })
@@ -159,29 +168,29 @@ return {
       })
     end,
   },
-  -- {
-  -- 	"ray-x/go.nvim",
-  -- 	dependencies = {
-  -- 		"ray-x/guihua.lua",
-  -- 		"neovim/nvim-lspconfig",
-  -- 		"nvim-treesitter/nvim-treesitter",
-  -- 	},
-  -- 	config = function()
-  -- 		require("go").setup()
-  --
-  --
-  -- 		vim.api.nvim_create_autocmd("BufWritePre", {
-  -- 			pattern = "*.go",
-  -- 			callback = function()
-  -- 				require('go.format').goimports()
-  -- 			end,
-  -- 			group = format_sync_grp,
-  -- 		})
-  -- 	end,
-  -- 	event = { "CmdlineEnter" },
-  -- 	ft = { "go", 'gomod' },
-  -- 	build = ':lua require("go.install").update_all_sync()'
-  -- },
+  {
+    "ray-x/go.nvim",
+    dependencies = {
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("go").setup()
+
+
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        pattern = "*.go",
+        callback = function()
+          require('go.format').goimports()
+        end,
+        group = format_sync_grp,
+      })
+    end,
+    event = { "CmdlineEnter" },
+    ft = { "go", 'gomod' },
+    build = ':lua require("go.install").update_all_sync()'
+  },
   {
     "luckasRanarison/tailwind-tools.nvim",
     name = "tailwind-tools",
@@ -192,5 +201,22 @@ return {
       "neovim/nvim-lspconfig",
     },
     opts = {},
-  }
+  },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "codecompanion", "markdown" }
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio", "theHamsta/nvim-dap-virtual-text" }
+  },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    config = function()
+      require("lazydev").setup({
+        library = { "nvim-dap-ui" },
+      })
+    end,
+  },
 }

@@ -38,12 +38,37 @@ vim.keymap.set("v", ">", ">gv", opts)
 vim.keymap.set("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = "*.jade",
-	command = "set filetype=pug",
+  pattern = "*.jade",
+  command = "set filetype=pug",
+})
+
+vim.filetype.add({
+  extension = {
+    gotmpl = 'gotmpl',
+  },
+  pattern = {
+    [".*/views/.*%.html"] = "helm",
+    [".*/templates/.*%.tpl"] = "helm",
+    [".*/templates/.*%.ya?ml"] = "helm",
+    ["helmfile.*%.ya?ml"] = "helm",
+  },
+})
+vim.filetype.add({ extension = { templ = "templ" } })
+
+vim.api.nvim_create_autocmd("FocusGained", {
+  desc = "Reload files from disk when we focus vim",
+  pattern = "*",
+  command = "if getcmdwintype() == '' | checktime | endif",
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  desc = "Every time we enter an unmodified buffer, check if it changed on disk",
+  pattern = "*",
+  command = "if &buftype == '' && !&modified && expand('%') != '' | exec 'checktime ' . expand('<abuf>') | endif",
 })
 
 vim.api.nvim_create_user_command('Wf', function()
-	local file_path = vim.fn.expand('%:p')
-	vim.fn.setreg('+', file_path)
-	vim.notify("Copied: " .. file_path)
+  local file_path = vim.fn.expand('%:p')
+  vim.fn.setreg('+', file_path)
+  vim.notify("Copied: " .. file_path)
 end, {})

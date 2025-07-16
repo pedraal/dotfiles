@@ -55,32 +55,43 @@ return {
           theme = flavor,
           component_separators = {},
           section_separators = { left = '', right = '' },
+          extensions = { "nvim-dap-ui" },
           disabled_filetypes = {
             'neo-tree',
             'alpha'
           }
         },
-        winbar = {
-          lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' }, separator = { left = '', right = '' } } },
-          lualine_b = {},
-          lualine_c = {},
-          lualine_x = {},
-          lualine_y = {},
-          lualine_z = {},
-        },
-        inactive_winbar = {
-          lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' } } },
-          lualine_b = {},
-          lualine_c = {},
-          lualine_x = {},
-          lualine_y = {},
-          lualine_z = {},
-        },
+        -- winbar = {
+        --   lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' }, separator = { left = '', right = '' } } },
+        --   lualine_b = {},
+        --   lualine_c = {},
+        --   lualine_x = {},
+        --   lualine_y = {},
+        --   lualine_z = {},
+        -- },
+        -- inactive_winbar = {
+        --   lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' } } },
+        --   lualine_b = {},
+        --   lualine_c = {},
+        --   lualine_x = {},
+        --   lualine_y = {},
+        --   lualine_z = {},
+        -- },
         sections = {
           lualine_a = { { 'mode', separator = { left = '', right = '' } } },
           lualine_b = { 'branch' },
           lualine_c = { { 'filename', path = 1, symbols = { unnamed = '' } }, 'diagnostics' },
-          lualine_x = {},
+          lualine_x = {
+            {
+              'lsp_status',
+              symbols = {
+                spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+                done = '✓',
+                separator = ' ',
+              },
+              ignore_lsp = { 'tailwindcss' },
+            }
+          },
           lualine_y = { 'progress' },
           lualine_z = { { 'location', separator = { left = '', right = '' } } },
         },
@@ -116,17 +127,16 @@ return {
             },
           },
         },
-        -- window = {
-        --   position = "right",
-        -- },
-        -- event_handlers = {
-        --   {
-        --     event = "file_open_requested",
-        --     handler = function()
-        --       require("neo-tree.command").execute({ action = "close" })
-        --     end
-        --   },
-        -- }
+        window = {
+          mappings = {
+            ["P"] = {
+              "toggle_preview",
+              config = {
+                use_image_nvim = true,
+              },
+            },
+          }
+        }
       })
       vim.keymap.set("n", "<leader>b", ":Neotree filesystem reveal float<CR>", {})
     end,
@@ -203,14 +213,60 @@ return {
     end,
   },
   {
-    "sphamba/smear-cursor.nvim",
-    opts = {
-      cursor_color = "#d3cdc3",
-      normal_bg = "#282828",
-      smear_between_buffers = true,
-      smear_between_neighbor_lines = true,
-      use_floating_windows = true,
-      legacy_computing_symbols_support = false,
-    },
-  },
+    "3rd/image.nvim",
+    commit = "21909e3eb03bc738cce497f45602bf157b396672",
+    build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
+    config = function()
+      require("image").setup({
+        backend = "kitty",
+        processor = "magick_cli", -- or "magick_rock"
+        integrations = {
+          markdown = {
+            enabled = true,
+            clear_in_insert_mode = false,
+            download_remote_images = true,
+            only_render_image_at_cursor = false,
+            only_render_image_at_cursor_mode = "popup",
+            floating_windows = false,              -- if true, images will be rendered in floating markdown windows
+            filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+          },
+          neorg = {
+            enabled = true,
+            filetypes = { "norg" },
+          },
+          typst = {
+            enabled = true,
+            filetypes = { "typst" },
+          },
+          html = {
+            enabled = false,
+          },
+          css = {
+            enabled = false,
+          },
+        },
+        max_width = nil,
+        max_height = nil,
+        max_width_window_percentage = nil,
+        max_height_window_percentage = 50,
+        window_overlap_clear_enabled = false,                                               -- toggles images when windows are overlapped
+        window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "snacks_notif", "scrollview", "scrollview_sign" },
+        editor_only_render_when_focused = false,                                            -- auto show/hide images when the editor gains/looses focus
+        tmux_show_only_in_active_window = false,                                            -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+        hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
+      })
+      require("image").enable()
+    end
+  }
+  -- {
+  --   "sphamba/smear-cursor.nvim",
+  --   opts = {
+  --     cursor_color = "#d3cdc3",
+  --     normal_bg = "#282828",
+  --     smear_between_buffers = true,
+  --     smear_between_neighbor_lines = true,
+  --     use_floating_windows = true,
+  --     legacy_computing_symbols_support = false,
+  --   },
+  -- },
 }
