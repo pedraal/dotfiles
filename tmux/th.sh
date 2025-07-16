@@ -16,20 +16,23 @@ else
     # If it doesn't exist, create a new session with the specified configuration
     echo "Creating new session '$SESSION_NAME'..."
 
-    tmux new-session -s "$SESSION_NAME" -n perf -d
-
+    tmux new-session -s "$SESSION_NAME" -n config -d
+    tmux new-window -t "$SESSION_NAME" -n git
     tmux new-window -t "$SESSION_NAME" -n rice
     tmux new-window -t "$SESSION_NAME" -n exec
 
-    tmux select-window -t "$SESSION_NAME":2
+    tmux select-window -t "$SESSION_NAME":3
     tmux send-keys "borders" C-m
-    tmux split-window -h -t "$SESSION_NAME":2
+    tmux split-window -h -t "$SESSION_NAME":3
     tmux send-keys "sketchybar" C-m
-    tmux split-window -h -t "$SESSION_NAME":2
+    tmux split-window -h -t "$SESSION_NAME":3
     tmux send-keys "sketchybar --hotload true" C-m
 
+    tmux select-window -t "$SESSION_NAME":2
+    tmux send-keys "cd ~/.config && lazygit" C-m
+
     tmux select-window -t "$SESSION_NAME":1
-    tmux send-keys "btm" C-m
+    tmux send-keys "cd ~/.config && nvim" C-m
 
     tmux attach-session -t "$SESSION_NAME"
 fi

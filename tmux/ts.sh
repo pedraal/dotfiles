@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Get the current directory name
-SESSION_NAME=$(basename "$PWD")
+SESSION_NAME=$(basename "$PWD" | tr '.' '_')
 
 # Check if the session already exists
-if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+if tmux has-session -t "=$SESSION_NAME" 2>/dev/null; then
     # If it exists, attach to it
     tmux attach-session -t "$SESSION_NAME"
 else
