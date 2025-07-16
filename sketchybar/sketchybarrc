@@ -3,6 +3,7 @@ SCRIPTS_DIR="$CONFIG_DIR/scripts"
 source ./colors.sh
 spacing=6
 
+
 bar=(
   position=top
   height=36
@@ -109,6 +110,7 @@ sketchybar -m --add item battery_label right \
               --subscribe battery_label system_woke power_source_change \
               --set battery_label \
                     "${label_default[@]}" \
+                    update_freq=360 \
                     script="$SCRIPTS_DIR/battery.sh"
 sketchybar -m --add item battery_icon right \
               --set battery_icon \
