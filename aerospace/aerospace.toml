@@ -99,6 +99,10 @@ alt-shift-l = ['join-with right', 'mode main']
     run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
+    if.app-id = 'com.apple.MobileSMS'
+    run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
     if.app-id = 'com.tinyspeck.slackmacgap'
     run = 'move-node-to-workspace 1'
 
@@ -112,6 +116,18 @@ alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
     if.app-id = 'com.moonlight-stream.Moonlight'
+    run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+    if.app-id = 'com.valvesoftware.steam'
+    run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+    if.app-id = 'com.figma.Desktop'
+    run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+    if.app-id = 'com.bohemiancoding.sketch3'
     run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
@@ -129,6 +145,14 @@ alt-shift-l = ['join-with right', 'mode main']
 [[on-window-detected]]
     if.app-id = 'app.zen-browser.zen'
     run = 'move-node-to-workspace B'
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.Safari'
+    run = 'move-node-to-workspace V'
+
+[[on-window-detected]]
+    if.app-id = 'com.IdeaPunch.ColorSlurp'
+    run = ['layout floating']
 
 [workspace-to-monitor-force-assignment]
   V = 'secondary'
