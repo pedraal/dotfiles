@@ -73,18 +73,6 @@
   "redhat.telemetry.enabled": false,
   "terminal.integrated.fontFamily": "DaddyTimeMono Nerd Font",
   "terminal.integrated.fontSize": 14,
-  "terminal.integrated.defaultProfile.osx": "tmux-shell",
-  "terminal.integrated.profiles.osx": {
-    "tmux-shell": {
-      "path": "tmux",
-      "args": [
-        "new-session",
-        "-A",
-        "-s",
-        "${workspaceFolderBasename}_workspace"
-      ]
-    }
-  },
   "window.autoDetectColorScheme": true,
   "window.confirmBeforeClose": "keyboardOnly",
   "workbench.colorTheme": "Catppuccin Mocha",
