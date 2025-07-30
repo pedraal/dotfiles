@@ -61,22 +61,22 @@ return {
             'alpha'
           }
         },
-        -- winbar = {
-        --   lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' }, separator = { left = '', right = '' } } },
-        --   lualine_b = {},
-        --   lualine_c = {},
-        --   lualine_x = {},
-        --   lualine_y = {},
-        --   lualine_z = {},
-        -- },
-        -- inactive_winbar = {
-        --   lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' } } },
-        --   lualine_b = {},
-        --   lualine_c = {},
-        --   lualine_x = {},
-        --   lualine_y = {},
-        --   lualine_z = {},
-        -- },
+        winbar = {
+          lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' }, separator = { left = '', right = '' } } },
+          lualine_b = {},
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = {},
+        },
+        inactive_winbar = {
+          lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' } } },
+          lualine_b = {},
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = {},
+        },
         sections = {
           lualine_a = { { 'mode', separator = { left = '', right = '' } } },
           lualine_b = { 'branch' },
@@ -219,6 +219,7 @@ return {
     config = function()
       require("image").setup({
         backend = "kitty",
+        kitty_method = "normal",
         processor = "magick_cli", -- or "magick_rock"
         integrations = {
           markdown = {
@@ -258,15 +259,4 @@ return {
       require("image").enable()
     end
   }
-  -- {
-  --   "sphamba/smear-cursor.nvim",
-  --   opts = {
-  --     cursor_color = "#d3cdc3",
-  --     normal_bg = "#282828",
-  --     smear_between_buffers = true,
-  --     smear_between_neighbor_lines = true,
-  --     use_floating_windows = true,
-  --     legacy_computing_symbols_support = false,
-  --   },
-  -- },
 }
