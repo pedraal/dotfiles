@@ -20,13 +20,13 @@ return {
   },
   {
     "williamboman/mason.nvim",
+    version = "1.11.0",
     lazy = false,
-    config = function()
-      require("mason").setup()
-    end,
+    opts = {}
   },
   {
     "williamboman/mason-lspconfig.nvim",
+    version = "1.32.0",
     lazy = false,
     opts = {
       ensure_installed = {
@@ -38,8 +38,7 @@ return {
         "stylelint_lsp@2.0.1",
         "tailwindcss@0.14.13",
         "ts_ls@4.3.4",
-        "volar@2.2.6",
-        -- "volar@3.0.1",
+        "volar@2.2.10",
         "templ@v0.3.865",
         "htmx@0.1.0"
       },
