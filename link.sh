@@ -1,8 +1,12 @@
-for entry in * .*; do
-  [[ $entry == . || $entry == .. ]] && continue
+mkdir -p ~/.config
 
-  src="$PWD/$entry"
-  dst="$HOME/.config/$entry"
+for entry in */; do
+  dir="${entry%/}"
+
+  [[ "$dir" == ".git" ]] && continue
+
+  src="$PWD/$dir"
+  dst="$HOME/.config/$dir"
 
   if [ -e "$dst" ] && [ ! -L "$dst" ]; then
     mv "$dst" "$dst.backup"
