@@ -1,16 +1,3 @@
-Autodesk
-configstore
-exercism
-fish
-gh
-github-copilot
-iterm2
 karabiner/*
 !karabiner/karabiner.json
-lazysql
-neofetch
-raycast
 tmux/plugins
-btop
-Battle.net
-uv
