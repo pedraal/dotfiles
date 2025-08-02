@@ -29,10 +29,10 @@ else
     tmux send-keys "sketchybar --hotload true" C-m
 
     tmux select-window -t "$SESSION_NAME":2
-    tmux send-keys "cd ~/.config && lazygit" C-m
+    tmux send-keys "cd ~/dotfiles && lazygit" C-m
 
     tmux select-window -t "$SESSION_NAME":1
-    tmux send-keys "cd ~/.config && nvim" C-m
+    tmux send-keys "cd ~/dotfiles && nvim" C-m
 
     tmux attach-session -t "$SESSION_NAME"
 fi
