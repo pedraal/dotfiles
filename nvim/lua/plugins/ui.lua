@@ -54,7 +54,7 @@ return {
         options = {
           theme = flavor,
           component_separators = {},
-          section_separators = { left = '', right = '' },
+          section_separators = { left = '█', right = '█' },
           extensions = { "nvim-dap-ui" },
           disabled_filetypes = {
             'neo-tree',
@@ -62,7 +62,7 @@ return {
           }
         },
         winbar = {
-          lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' }, separator = { left = '', right = '' } } },
+          lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' }, separator = { left = '█', right = '█' } } },
           lualine_b = {},
           lualine_c = {},
           lualine_x = {},
@@ -78,7 +78,7 @@ return {
           lualine_z = {},
         },
         sections = {
-          lualine_a = { { 'mode', separator = { left = '', right = '' } } },
+          lualine_a = { { 'mode', separator = { left = '█', right = '█' } } },
           lualine_b = { 'branch' },
           lualine_c = { { 'filename', path = 1, symbols = { unnamed = '' } }, 'diagnostics' },
           lualine_x = {
@@ -93,7 +93,7 @@ return {
             }
           },
           lualine_y = { 'progress' },
-          lualine_z = { { 'location', separator = { left = '', right = '' } } },
+          lualine_z = { { 'location', separator = { left = '█', right = '█' } } },
         },
         inactive_sections = {
           lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' } } },
