@@ -4,6 +4,7 @@ for entry in */; do
   dir="${entry%/}"
 
   [[ "$dir" == ".git" ]] && continue
+  [[ "$dir" == "keyboard" ]] && continue
 
   src="$PWD/$dir"
   dst="$HOME/.config/$dir"
