@@ -102,6 +102,19 @@ return {
         capabilities = capabilities,
         root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
       })
+      lspconfig.ruby_lsp.setup({
+        capabilities = capabilities,
+        root_dir = lspconfig.util.root_pattern("Gemfile"),
+        init_options = {
+          formattee = 'rubocop',
+          linters = { 'rubocop' },
+        },
+        addonSettings = {
+          ["Ruby LSP Rails"] = {
+            enablePendingMigrationsPrompt = false,
+          },
+        },
+      })
       lspconfig.biome.setup({
         capabilities = capabilities,
         root_dir = lspconfig.util.root_pattern("biome.json", "biome.jsonc"),
