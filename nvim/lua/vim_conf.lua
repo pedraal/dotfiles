@@ -16,6 +16,9 @@ vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 vim.opt.updatetime = 50
 
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 
