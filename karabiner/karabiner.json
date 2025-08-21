@@ -1,5 +1,8 @@
 {
-    "global": { "enable_notification_window": false },
+    "global": {
+        "check_for_updates_on_startup": false,
+        "enable_notification_window": false
+    },
     "profiles": [
         {
             "complex_modifications": {
