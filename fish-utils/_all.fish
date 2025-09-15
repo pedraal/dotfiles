@@ -1,0 +1,9 @@
+source ~/.config/fish-utils/lang.fish
+source ~/.config/fish-utils/bins.fish
+source ~/.config/fish-utils/starship.fish
+source ~/.config/fish-utils/asdf.fish
+source ~/.config/fish-utils/deno.fish
+source ~/.config/fish-utils/borders.fish
+source ~/.config/fish-utils/tmux.fish
+source ~/.config/fish-utils/nvim.fish
+source ~/.config/fish-utils/orbstack.fish
