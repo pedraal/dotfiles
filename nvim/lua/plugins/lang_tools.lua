@@ -51,52 +51,41 @@ return {
       local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      local function is_eslint_active()
-        local clients = vim.lsp.get_active_clients()
-        for _, client in ipairs(clients) do
-          if client.name == "eslint" then
-            return true
-          end
-        end
-        return false
-      end
+      local mason_registry = require('mason-registry')
+      local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
+          '/node_modules/@vue/language-server'
 
-      local vue_language_server_path = nil
-      local mason_registry_ok, mason_registry = pcall(require, "mason-registry")
-
-      if mason_registry_ok then
-        local vue_pkg_ok, vue_pkg = pcall(function()
-          return mason_registry.get_package('vue-language-server')
-        end)
-
-        if vue_pkg_ok and vue_pkg then
-          vue_language_server_path = vue_pkg:get_install_path()
-        end
-      end
-
-      local ts_config = {
+      local tsserver_filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' }
+      local vue_plugin = {
+        name = '@vue/typescript-plugin',
+        location = vue_language_server_path,
+        languages = { 'vue' },
+        configNamespace = 'typescript',
+      }
+      local vtsls_config = {
         capabilities = capabilities,
-        root_dir = lspconfig.util.root_pattern("package.json"),
-        single_file_support = false,
+        settings = {
+          vtsls = {
+            tsserver = {
+              globalPlugins = {
+                vue_plugin,
+              },
+            },
+          },
+        },
+        filetypes = tsserver_filetypes,
+      }
+
+      local vue_ls_config = {
+        capabilities = capabilities,
         on_attach = function(client, _)
           client.server_capabilities.documentFormattingProvider = false
           client.server_capabilities.documentRangeFormattingProvider = false
         end,
       }
 
-      if vue_language_server_path then
-        ts_config.init_options = {
-          plugins = {
-            {
-              name = '@vue/typescript-plugin',
-              location = vue_language_server_path,
-              languages = { 'vue' },
-            },
-          },
-        }
-      end
-
-      lspconfig.ts_ls.setup(ts_config)
+      lspconfig.vtsls.setup(vtsls_config)
+      lspconfig.volar.setup(vue_ls_config)
 
       lspconfig.denols.setup({
         capabilities = capabilities,
@@ -139,20 +128,20 @@ return {
         capabilities = capabilities,
         root_dir = lspconfig.util.root_pattern("eslint.config.js", "eslint.config.mjs", ".eslintrc.cjs", ".eslintrc.js"),
       })
-      lspconfig.volar.setup({
-        capabilities = capabilities,
-        on_attach = function(client, _)
-          if is_eslint_active() then
-            client.server_capabilities.documentFormattingProvider = false
-            client.server_capabilities.documentRangeFormattingProvider = false
-          end
-        end,
-        init_options = {
-          vue = {
-            hybridMode = false
-          }
-        }
-      })
+      -- lspconfig.volar.setup({
+      --   capabilities = capabilities,
+      --   on_attach = function(client, _)
+      --     if is_eslint_active() then
+      --       client.server_capabilities.documentFormattingProvider = false
+      --       client.server_capabilities.documentRangeFormattingProvider = false
+      --     end
+      --   end,
+      --   init_options = {
+      --     vue = {
+      --       hybridMode = false
+      --     }
+      --   }
+      -- })
       lspconfig.gopls.setup({
         capabilities = capabilities,
       })
@@ -222,10 +211,6 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     ft = { "codecompanion", "markdown" }
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio", "theHamsta/nvim-dap-virtual-text" }
   },
   {
     "folke/lazydev.nvim",
