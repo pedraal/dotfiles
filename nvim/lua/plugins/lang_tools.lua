@@ -39,8 +39,7 @@ return {
         "tailwindcss@0.14.13",
         "ts_ls@4.3.4",
         "volar@2.2.10",
-        "templ@v0.3.865",
-        "htmx@0.1.0"
+        "templ@v0.3.865"
       },
     },
   },
@@ -74,6 +73,10 @@ return {
           },
         },
         filetypes = tsserver_filetypes,
+        on_attach = function(client, _)
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+        end,
       }
 
       local vue_ls_config = {
@@ -86,7 +89,6 @@ return {
 
       lspconfig.vtsls.setup(vtsls_config)
       lspconfig.volar.setup(vue_ls_config)
-
       lspconfig.denols.setup({
         capabilities = capabilities,
         root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
@@ -111,10 +113,6 @@ return {
       lspconfig.html.setup({
         capabilities = capabilities,
       })
-      lspconfig.htmx.setup({
-        capabilities = capabilities,
-        filetypes = { "html", "templ" },
-      })
       lspconfig.jsonls.setup({
         capabilities = capabilities,
       })
@@ -128,20 +126,6 @@ return {
         capabilities = capabilities,
         root_dir = lspconfig.util.root_pattern("eslint.config.js", "eslint.config.mjs", ".eslintrc.cjs", ".eslintrc.js"),
       })
-      -- lspconfig.volar.setup({
-      --   capabilities = capabilities,
-      --   on_attach = function(client, _)
-      --     if is_eslint_active() then
-      --       client.server_capabilities.documentFormattingProvider = false
-      --       client.server_capabilities.documentRangeFormattingProvider = false
-      --     end
-      --   end,
-      --   init_options = {
-      --     vue = {
-      --       hybridMode = false
-      --     }
-      --   }
-      -- })
       lspconfig.gopls.setup({
         capabilities = capabilities,
       })
@@ -157,14 +141,11 @@ return {
 
       vim.keymap.set("n", "gh", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-      vim.keymap.set("n", "gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", {})
       vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
-      vim.keymap.set("n", "gI", "<cmd>tab split | lua vim.lsp.buf.implementation()<CR>", {})
       vim.keymap.set("n", "gr", vim.lsp.buf.rename, {})
       vim.keymap.set("n", "gf", vim.diagnostic.open_float, {})
-      -- vim.keymap.set("n", "gn", vim.diagnostic.goto_next, {})
-      -- vim.keymap.set("n", "gp", vim.diagnostic.goto_prev, {})
-      -- vim.keymap.set("n", "ff", vim.lsp.buf.format, {})
+      vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, {})
+      vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, {})
       vim.keymap.set({ "n", "v" }, "ga", vim.lsp.buf.code_action, {})
 
       vim.api.nvim_create_autocmd({ "BufWritePre" }, {
@@ -210,7 +191,7 @@ return {
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "codecompanion", "markdown" }
+    ft = { "markdown" }
   },
   {
     "folke/lazydev.nvim",
