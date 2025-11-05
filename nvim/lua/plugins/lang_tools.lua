@@ -1,3 +1,5 @@
+local is_light_config = os.getenv("NVIM_LIGHT_CONFIG") ~= nil
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -20,12 +22,14 @@ return {
   },
   {
     "williamboman/mason.nvim",
+    cond = not is_light_config,
     version = "1.11.0",
     lazy = false,
     opts = {}
   },
   {
     "williamboman/mason-lspconfig.nvim",
+    cond = not is_light_config,
     version = "1.32.0",
     lazy = false,
     opts = {
@@ -45,6 +49,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    cond = not is_light_config,
     lazy = false,
     config = function()
       local lspconfig = require("lspconfig")
@@ -157,6 +162,7 @@ return {
   },
   {
     "ray-x/go.nvim",
+    cond = not is_light_config,
     dependencies = {
       "ray-x/guihua.lua",
       "neovim/nvim-lspconfig",
@@ -195,7 +201,8 @@ return {
   },
   {
     "folke/lazydev.nvim",
-    ft = "lua", -- only load on lua files
+    cond = not is_light_config,
+    ft = "lua",
     config = function()
       require("lazydev").setup({
         library = { "nvim-dap-ui" },

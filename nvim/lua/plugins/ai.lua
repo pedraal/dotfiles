@@ -1,6 +1,9 @@
+local is_light_config = os.getenv("NVIM_LIGHT_CONFIG") ~= nil
+
 return {
   {
     "supermaven-inc/supermaven-nvim",
+    cond = not is_light_config,
     config = function()
       require("supermaven-nvim").setup({
         ignore_filetypes = { "neo-tree", "neo-tree-popup" }
@@ -9,6 +12,7 @@ return {
   },
   {
     'NickvanDyke/opencode.nvim',
+    cond = not is_light_config,
     ---@type opencode.Opts
     opts = {
       -- Your configuration, if any — see lua/opencode/config.lua

@@ -7,16 +7,6 @@ return {
     vim.keymap.set("n", "C-l", ":TmuxNavigateRight<CR>"),
   },
   {
-    "nvim-pack/nvim-spectre",
-    version = '*',
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {})
-    end,
-  },
-  {
     "lewis6991/gitsigns.nvim",
     config = function()
       require('gitsigns').setup()

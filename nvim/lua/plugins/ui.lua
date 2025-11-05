@@ -1,3 +1,5 @@
+local is_light_config = os.getenv("NVIM_LIGHT_CONFIG") ~= nil
+
 return {
   {
     "goolord/alpha-nvim",
@@ -241,6 +243,7 @@ return {
   },
   {
     "3rd/image.nvim",
+    cond = not is_light_config,
     commit = "21909e3eb03bc738cce497f45602bf157b396672",
     build = false, -- so that it doesn't build the rock https://github.com/3rd/image.nvim/issues/91#issuecomment-2453430239
     config = function()
@@ -288,6 +291,7 @@ return {
   },
   {
     'kristijanhusak/vim-dadbod-ui',
+    cond = not is_light_config,
     dependencies = {
       { 'tpope/vim-dadbod',                     lazy = true },
       { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true }, -- Optional
