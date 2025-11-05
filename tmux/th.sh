@@ -25,8 +25,6 @@ else
     tmux send-keys "borders" C-m
     tmux split-window -h -t "$SESSION_NAME":3
     tmux send-keys "sketchybar" C-m
-    tmux split-window -h -t "$SESSION_NAME":3
-    tmux send-keys "sketchybar --hotload true" C-m
 
     tmux select-window -t "$SESSION_NAME":2
     tmux send-keys "cd ~/dotfiles && lazygit" C-m
