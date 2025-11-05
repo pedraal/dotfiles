@@ -38,6 +38,9 @@ vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', opts)
 vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
 
+vim.keymap.set("n", "<S-h>", ":bprevious<CR>", opts)
+vim.keymap.set("n", "<S-l>", ":bnext<CR>", opts)
+
 vim.keymap.set("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {

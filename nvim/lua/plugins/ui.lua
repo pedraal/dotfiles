@@ -120,6 +120,7 @@ return {
       require("neo-tree").setup({
         filesystem = {
           filtered_items = {
+            hide_dotfiles = false,
             visible = true,
             never_show = {
               ".DS_Store",
@@ -155,12 +156,38 @@ return {
       vim.keymap.set("n", "<leader>f", builtin.live_grep, {})
       vim.keymap.set("v", "<leader>f", builtin.grep_string, {})
       vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
-      vim.keymap.set("n", "<leader>t", builtin.treesitter, {})
-      vim.keymap.set("n", "<leader>;", builtin.commands, {})
-      vim.keymap.set("n", "<leader>:", builtin.command_history, {})
-      vim.keymap.set("n", "<leader>B", builtin.builtin, {})
+      -- vim.keymap.set("n", "<leader>t", builtin.treesitter, {})
+      vim.keymap.set("n", "<leader>:", builtin.commands, {})
+      vim.keymap.set("n", "<leader>gb", builtin.buffers, {})
       require("telescope").load_extension("media_files")
-      vim.keymap.set("n", "<leader>M", require('telescope').extensions.media_files.media_files, {})
+      require('telescope').setup {
+        defaults = {
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden',
+            '--glob=!**/.git/*',
+          },
+          pickers = {
+            find_files = {
+              hidden = true,
+              -- needed to exclude some files & dirs from general search
+              -- when not included or specified in .gitignore
+              find_command = {
+                "rg",
+                "--files",
+                "--hidden",
+                "--glob=!**/.git/*",
+              },
+            },
+          },
+        }
+      }
     end,
   },
   {
