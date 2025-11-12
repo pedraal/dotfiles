@@ -17,25 +17,6 @@ return {
       vim.keymap.set("n", "<leader>gp", ":Gitsigns prev_hunk<CR>", {})
     end
   },
-  -- {
-  --   "laytan/cloak.nvim",
-  --   config = function()
-  --     require("cloak").setup({
-  --       enabled = true,
-  --       cloak_character = "*",
-  --       highlight_group = "Comment",
-  --       patterns = {
-  --         {
-  --           file_pattern = {
-  --             ".env*",
-  --             "*.env*",
-  --           },
-  --           cloak_pattern = "=.+"
-  --         },
-  --       },
-  --     })
-  --   end
-  -- },
   {
     'echasnovski/mini.nvim',
     version = '*',

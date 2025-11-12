@@ -68,6 +68,7 @@ return {
       }
       local vtsls_config = {
         capabilities = capabilities,
+        root_dir = lspconfig.util.root_pattern("package.json"),
         settings = {
           vtsls = {
             tsserver = {
