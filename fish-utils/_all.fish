@@ -7,3 +7,4 @@ source ~/.config/fish-utils/borders.fish
 source ~/.config/fish-utils/tmux.fish
 source ~/.config/fish-utils/nvim.fish
 source ~/.config/fish-utils/orbstack.fish
+source ~/.config/fish-utils/projects.fish

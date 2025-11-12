@@ -93,7 +93,7 @@ sketchybar -m --add item clock_label right \
 sketchybar -m --add item clock_icon right \
               --set clock_icon \
                     "${icon_default[@]}" \
-                    background.color="$maroon" \
+                    background.color="$blue" \
                     icon=
 
 sketchybar -m --add item volume_label right \
@@ -103,7 +103,7 @@ sketchybar -m --add item volume_label right \
                     script="$SCRIPTS_DIR/volume.sh"
 sketchybar -m --add item volume_icon right \
               --set volume_icon \
-                    background.color="$peach" \
+                    background.color="$blue" \
                     "${icon_default[@]}"
 
 sketchybar -m --add item battery_label right \
@@ -114,7 +114,7 @@ sketchybar -m --add item battery_label right \
                     script="$SCRIPTS_DIR/battery.sh"
 sketchybar -m --add item battery_icon right \
               --set battery_icon \
-                    background.color="$green" \
+                    background.color="$lavender" \
                     "${icon_default[@]}"
 
 sketchybar -m --add item cpu_label right \
@@ -124,7 +124,7 @@ sketchybar -m --add item cpu_label right \
                     script="$SCRIPTS_DIR/cpu.sh"
 sketchybar -m --add item cpu_icon right \
               --set cpu_icon \
-                    background.color="$red" \
+                    background.color="$lavender" \
                     icon= \
                     "${icon_default[@]}"
 
@@ -135,7 +135,7 @@ sketchybar -m --add item ram_label right \
                     script="$SCRIPTS_DIR/ram.sh"
 sketchybar -m --add item ram_icon right \
               --set ram_icon \
-                    background.color="$red" \
+                    background.color="$lavender" \
                     icon= \
                     "${icon_default[@]}"
 
@@ -143,7 +143,7 @@ sketchybar -m --add item ram_icon right \
 sketchybar -m --add item vpn right \
               --set vpn \
                     icon=󰻌 \
-                    background.color="$red" \
+                    background.color="$lavender" \
                     drawing=off \
                     update_freq=5 \
                     script="$SCRIPTS_DIR/vpn.sh" \

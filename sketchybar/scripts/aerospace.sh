@@ -3,7 +3,7 @@
 source ./colors.sh
 
 if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
-    sketchybar --set $NAME background.color="$lavender"
+    sketchybar --set $NAME background.color="$blue"
 else
     sketchybar --set $NAME background.color="$background"
 fi

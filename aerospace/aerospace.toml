@@ -54,7 +54,6 @@ alt-t = 'workspace T'
 alt-1 = 'workspace alt1'
 alt-2 = 'workspace alt2'
 
-
 alt-shift-a = 'move-node-to-workspace 1'
 alt-shift-s = 'move-node-to-workspace 2'
 alt-shift-d = 'move-node-to-workspace 3'
@@ -90,10 +89,26 @@ f = [
   'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main'
 ]
 
-alt-shift-h = ['join-with left', 'mode main']
-alt-shift-j = ['join-with down', 'mode main']
-alt-shift-k = ['join-with up', 'mode main']
-alt-shift-l = ['join-with right', 'mode main']
+alt-shift-h = [
+  'join-with left',
+  'mode main',
+  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main'
+]
+alt-shift-j = [
+  'join-with down',
+  'mode main',
+  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main'
+]
+alt-shift-k = [
+  'join-with up',
+  'mode main',
+  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main'
+]
+alt-shift-l = [
+  'join-with right',
+  'mode main',
+  'exec-and-forget sketchybar --trigger aerospace_mode_change MODE=main'
+]
 
 [[on-window-detected]]
     if.app-id = 'com.hnc.Discord'
@@ -161,6 +176,10 @@ alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
     if.app-id = 'com.IdeaPunch.ColorSlurp'
+    run = ['layout floating']
+
+[[on-window-detected]]
+    if.app-id = 'com.tinyapp.TablePlus'
     run = ['layout floating']
 
 [workspace-to-monitor-force-assignment]

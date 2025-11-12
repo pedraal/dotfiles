@@ -1,30 +1,42 @@
 #!/bin/bash
 
-# Script name: init_home_session.sh
-# Description: Creates or attaches to a tmux session named "__home__" with
-#              specific windows and applications
-
-# Session name
 SESSION_NAME="__home__"
 
-# Check if the session already exists
+BORDERS_INSTALLED=false
+SKETCHYBAR_INSTALLED=false
+if command -v borders >/dev/null; then
+    BORDERS_INSTALLED=true
+fi
+if command -v sketchybar >/dev/null; then
+    SKETCHYBAR_INSTALLED=true
+fi
+RICEABLE=$($BORDERS_INSTALLED || $SKETCHYBAR_INSTALLED)
+
 if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
-    # If it exists, attach to it
     echo "Attaching to existing session '$SESSION_NAME'..."
     tmux attach-session -t "$SESSION_NAME"
 else
-    # If it doesn't exist, create a new session with the specified configuration
     echo "Creating new session '$SESSION_NAME'..."
+
+    cd ~
 
     tmux new-session -s "$SESSION_NAME" -n config -d
     tmux new-window -t "$SESSION_NAME" -n git
-    tmux new-window -t "$SESSION_NAME" -n rice
+    if $RICEABLE; then
+        tmux new-window -t "$SESSION_NAME" -n rice
+    fi
     tmux new-window -t "$SESSION_NAME" -n exec
 
-    tmux select-window -t "$SESSION_NAME":3
-    tmux send-keys "borders" C-m
-    tmux split-window -h -t "$SESSION_NAME":3
-    tmux send-keys "sketchybar" C-m
+    if $RICEABLE; then
+        tmux select-window -t "$SESSION_NAME":3
+        if $BORDERS_INSTALLED; then
+            tmux send-keys "borders" C-m
+        fi
+        if $SKETCHYBAR_INSTALLED; then
+            tmux split-window -h -t "$SESSION_NAME":3
+            tmux send-keys "sketchybar" C-m
+        fi
+    fi
 
     tmux select-window -t "$SESSION_NAME":2
     tmux send-keys "cd ~/dotfiles && lazygit" C-m
