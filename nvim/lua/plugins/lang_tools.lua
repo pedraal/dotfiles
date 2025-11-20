@@ -68,7 +68,15 @@ return {
       }
       local vtsls_config = {
         capabilities = capabilities,
-        root_dir = lspconfig.util.root_pattern("package.json"),
+        root_dir = function(fname)
+          local util = lspconfig.util
+          -- Don't start vtsls if deno.json exists
+          if util.root_pattern("deno.json", "deno.jsonc")(fname) then
+            return nil
+          end
+          return util.root_pattern(".git")(fname)
+        end,
+        single_file_support = false,
         settings = {
           vtsls = {
             tsserver = {
