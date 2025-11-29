@@ -13,17 +13,30 @@ return {
   {
     'NickvanDyke/opencode.nvim',
     cond = not is_light_config,
-    ---@type opencode.Opts
-    opts = {
-      -- Your configuration, if any — see lua/opencode/config.lua
-    },
-    keys = {
-      { '<leader>oA', function() require('opencode').ask() end,                  desc = 'Ask opencode', },
-      { '<leader>oa', function() require('opencode').ask('@cursor: ') end,       desc = 'Ask opencode about this',      mode = 'n', },
-      { '<leader>oa', function() require('opencode').ask('@selection: ') end,    desc = 'Ask opencode about selection', mode = 'v', },
-      { '<leader>ot', function() require('opencode').toggle() end,               desc = 'Toggle embedded opencode', },
-      { '<leader>on', function() require('opencode').command('session_new') end, desc = 'New session', },
-      { '<leader>op', function() require('opencode').select_prompt() end,        desc = 'Select prompt',                mode = { 'n', 'v', }, },
-    },
+    config = function()
+      vim.g.opencode_opts = {
+        provider = {
+          enabled = "tmux",
+          tmux = {
+            -- ...
+          }
+        }
+      }
+
+      vim.o.autoread = true
+
+      vim.keymap.set({ "n", "x" }, "<leader>oa", function() require("opencode").ask("@this: ", { submit = true }) end,
+        { desc = "Ask opencode" })
+      vim.keymap.set({ "n", "x" }, "<leader>ox", function() require("opencode").select() end,
+        { desc = "Execute opencode action…" })
+      vim.keymap.set({ "n", "x" }, "<leader>oA", function() require("opencode").prompt("@this") end,
+        { desc = "Add to opencode" })
+      vim.keymap.set({ "n", "t" }, "<leader>ot", function() require("opencode").toggle() end,
+        { desc = "Toggle opencode" })
+      -- vim.keymap.set("n", "<C-U>", function() require("opencode").command("session.half.page.up") end,
+      --   { desc = "opencode half page up" })
+      -- vim.keymap.set("n", "<C-D>", function() require("opencode").command("session.half.page.down") end,
+      --   { desc = "opencode half page down" })
+    end,
   }
 }
