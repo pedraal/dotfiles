@@ -11,8 +11,6 @@ return {
     config = function()
       require('gitsigns').setup()
 
-      vim.keymap.set("n", "<leader>gh", ":Gitsigns preview_hunk<CR>", {})
-      vim.keymap.set("n", "<leader>gl", ":Gitsigns toggle_current_line_blame<CR>", {})
       vim.keymap.set("n", "<leader>gn", ":Gitsigns next_hunk<CR>", {})
       vim.keymap.set("n", "<leader>gp", ":Gitsigns prev_hunk<CR>", {})
     end
@@ -71,7 +69,8 @@ return {
     config = function()
       require("mini.indentscope").setup({
         draw = {
-          delay = 1
+          animation = require('mini.indentscope').gen_animation.none(),
+          delay = 0
         }
       })
     end,
