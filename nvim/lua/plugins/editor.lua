@@ -25,7 +25,14 @@ return {
     'echasnovski/mini.trailspace',
     version = '*',
     config = function()
-      require("mini.trailspace").setup({})
+      local trailspace = require("mini.trailspace")
+      trailspace.setup({})
+
+      vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+        callback = function()
+          trailspace.trim()
+        end,
+      })
     end,
   },
   {
