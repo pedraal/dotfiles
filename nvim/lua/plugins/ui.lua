@@ -33,25 +33,32 @@ return {
           }
         },
         winbar = {
-          lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' }, separator = { left = '█', right = '█' } } },
-          lualine_b = {},
-          lualine_c = {},
-          lualine_x = {},
-          lualine_y = {},
-          lualine_z = {},
+          lualine_a = {
+            {
+              'filename',
+              path = 1,
+              symbols = { unnamed = '' },
+              separator = { left = '', right = '' }
+            },
+          },
+          -- lualine_b = {},
+          -- lualine_c = {},
+          -- lualine_x = {},
+          -- lualine_y = {},
+          -- lualine_z = {},
         },
         inactive_winbar = {
           lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' } } },
-          lualine_b = {},
-          lualine_c = {},
-          lualine_x = {},
-          lualine_y = {},
-          lualine_z = {},
+          -- lualine_b = {},
+          -- lualine_c = {},
+          -- lualine_x = {},
+          -- lualine_y = {},
+          -- lualine_z = {},
         },
         sections = {
           lualine_a = { { 'mode', separator = { left = '█', right = '█' } } },
           lualine_b = { 'branch' },
-          lualine_c = { { 'filename', path = 1, symbols = { unnamed = '' } }, 'diagnostics' },
+          lualine_c = { 'diagnostics' },
           lualine_x = {
             {
               'lsp_status',
@@ -63,11 +70,11 @@ return {
               ignore_lsp = { 'tailwindcss' },
             }
           },
-          lualine_y = { 'progress' },
+          lualine_y = {},
           lualine_z = { { 'location', separator = { left = '█', right = '█' } } },
         },
         inactive_sections = {
-          lualine_a = { { 'filename', path = 1, symbols = { unnamed = '' } } },
+          lualine_a = {},
           lualine_b = {},
           lualine_c = {},
           lualine_x = {},
