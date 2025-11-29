@@ -60,7 +60,7 @@ vim.filetype.add({
 })
 vim.filetype.add({ extension = { templ = "templ" } })
 
-vim.api.nvim_create_autocmd("FocusGained", {
+vim.api.nvim_create_autocmd({ "FocusGained", "TermResponse" }, {
   desc = "Reload files from disk when we focus vim",
   pattern = "*",
   command = "if getcmdwintype() == '' | checktime | endif",
@@ -70,6 +70,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
   desc = "Every time we enter an unmodified buffer, check if it changed on disk",
   pattern = "*",
   command = "if &buftype == '' && !&modified && expand('%') != '' | exec 'checktime ' . expand('<abuf>') | endif",
+})
+
+vim.api.nvim_create_autocmd("WinEnter", {
+  desc = "Check for file changes when entering a window (for tmux pane navigation)",
+  pattern = "*",
+  command = "if &buftype == '' && expand('%') != '' | checktime | endif",
 })
 
 vim.api.nvim_create_user_command('Wf', function()
