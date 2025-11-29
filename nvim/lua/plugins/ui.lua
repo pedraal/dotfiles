@@ -149,20 +149,17 @@ return {
             '--hidden',
             '--glob=!**/.git/*',
           },
-          pickers = {
-            find_files = {
-              hidden = true,
-              -- needed to exclude some files & dirs from general search
-              -- when not included or specified in .gitignore
-              find_command = {
-                "rg",
-                "--files",
-                "--hidden",
-                "--glob=!**/.git/*",
-              },
+        },
+        pickers = {
+          find_files = {
+            find_command = {
+              "rg",
+              "--files",
+              "--hidden",
+              "--glob=!**/.git/*",
             },
           },
-        }
+        },
       }
     end,
   },
