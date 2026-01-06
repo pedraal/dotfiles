@@ -37,10 +37,10 @@ function tmux_home
             if test $BORDERS_INSTALLED = true
                 tmux send-keys "borders" C-m
             end
-            if test $SKETCHYBAR_INSTALLED = true
-                tmux split-window -h -t "$SESSION_NAME":3
-                tmux send-keys "sketchybar" C-m
-            end
+            # if test $SKETCHYBAR_INSTALLED = true
+            #     tmux split-window -h -t "$SESSION_NAME":3
+            #     tmux send-keys "sketchybar" C-m
+            # end
         end
 
         tmux select-window -t "$SESSION_NAME":2

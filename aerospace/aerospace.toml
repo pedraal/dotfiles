@@ -7,7 +7,7 @@ on-focus-changed = [
   'move-mouse window-lazy-center',
 ]
 exec-on-workspace-change = [
-  '/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+  # '/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
 start-at-login = true
@@ -24,7 +24,8 @@ inner.horizontal = 12
 inner.vertical = 12
 outer.left = 12
 outer.bottom = 12
-outer.top = [{ monitor.main = 42 }, 12]
+outer.top = 12
+# outer.top = [{ monitor.main = 42 }, 12]
 outer.right = 12
 
 [mode.main.binding]
@@ -177,6 +178,10 @@ alt-shift-l = [
 [[on-window-detected]]
     if.app-id = 'com.apple.Safari'
     run = 'move-node-to-workspace V'
+
+[[on-window-detected]]
+    if.app-id = 'com.google.Chrome'
+    run = ['layout floating']
 
 [[on-window-detected]]
     if.app-id = 'com.IdeaPunch.ColorSlurp'
