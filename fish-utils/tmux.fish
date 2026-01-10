@@ -23,7 +23,7 @@ function tmux_home
         echo "Creating new session '$SESSION_NAME'..."
 
         set original_dir $PWD
-        cd ~
+        cd ~/dotfiles
 
         tmux new-session -s "$SESSION_NAME" -n config -d
         tmux new-window -t "$SESSION_NAME" -n git
