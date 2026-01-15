@@ -35,15 +35,15 @@ return {
     opts = {
       ensure_installed = {
         "biome@1.9.4",
+        "denols@2.6.4",
         "eslint@4.10.0",
         "html@4.10.0",
         "jsonls@4.10.0",
         "lua_ls@3.13.9",
         "stylelint_lsp@2.0.1",
         "tailwindcss@0.14.13",
-        "ts_ls@4.3.4",
         "volar@2.2.10",
-        "templ@v0.3.865"
+        "vtsls@0.2.9"
       },
     },
   },
