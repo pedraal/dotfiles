@@ -79,7 +79,7 @@ vim.api.nvim_create_autocmd("WinEnter", {
 })
 
 vim.api.nvim_create_user_command('Wf', function()
-  local file_path = vim.fn.expand('%:p')
+  local file_path = vim.fn.expand('%:.')
   vim.fn.setreg('+', file_path)
   vim.notify("Copied: " .. file_path)
 end, {})
