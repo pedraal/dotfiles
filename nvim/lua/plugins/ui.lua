@@ -114,10 +114,20 @@ return {
                 use_image_nvim = true,
               },
             },
+            ["<C-v>"] = {
+              "open_vsplit"
+            },
+            ["<C-x>"] = {
+              "open_split"
+            },
+            ["S"] = { nil },
+            ["s"] = { nil },
           }
         }
       })
       vim.keymap.set("n", "<leader>b", ":Neotree filesystem reveal float<CR>", {})
+      vim.keymap.set("n", "<leader>gB", ":Neotree buffers reveal float<CR>", {})
+      vim.keymap.set("n", "<leader>gS", ":Neotree git_status reveal float<CR>", {})
     end,
   },
   {
@@ -131,11 +141,15 @@ return {
       local builtin = require("telescope.builtin")
       vim.keymap.set("n", "<leader> ", builtin.find_files, {})
       vim.keymap.set("n", "<leader>f", builtin.live_grep, {})
-      vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
       -- vim.keymap.set("n", "<leader>t", builtin.treesitter, {})
+      vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
       vim.keymap.set("n", "<leader>gb", builtin.buffers, {})
       vim.keymap.set("n", "<leader>gB", builtin.builtin, {})
       vim.keymap.set("n", "<leader>:", builtin.commands, {})
+      vim.keymap.set("n", "<leader>:", builtin.commands, {})
+
+      local actions = require "telescope.actions"
+
       require('telescope').setup {
         defaults = {
           vimgrep_arguments = {
@@ -151,7 +165,25 @@ return {
           },
         },
         pickers = {
+          live_grep = {
+            mappings = {
+              i = {
+                ["<C-a>"] = actions.send_selected_to_qflist + actions.open_qflist,
+              },
+              n = {
+                ["<C-a>"] = actions.send_selected_to_qflist + actions.open_qflist,
+              }
+            },
+          },
           find_files = {
+            mappings = {
+              i = {
+                ["<C-a>"] = actions.send_selected_to_qflist + actions.open_qflist,
+              },
+              n = {
+                ["<C-a>"] = actions.send_selected_to_qflist + actions.open_qflist,
+              }
+            },
             find_command = {
               "rg",
               "--files",
